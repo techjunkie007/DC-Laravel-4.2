@@ -1,0 +1,93 @@
+.header
+{
+	background-color: #282828;
+	height:80px;
+	font-family: Sansation;
+	color: #eee;
+	font-weight: bold;
+	letter-spacing: 4px;
+}
+
+
+
+.block
+{
+	height:81.95%;
+}
+
+.footer
+{
+	padding-top: 0.5%;
+	height: 7%;
+	background-color:#aaaaaa;
+	font-family: Sansation;		
+}
+
+.adminstrationLogin
+{
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-top: 9%;		
+}
+
+.admlogin
+{
+	border-bottom: 1px dashed #282828;	
+	font-weight: bolder;
+	padding-bottom: 2%;
+	font-family: sans-serif;
+}
+
+.button1
+{
+	border: 1px solid #222;
+	background-color: rgba(0,0,0,0);
+	transition:all 0.3s ease;	
+	margin-left: 30%;
+	letter-spacing: 2px;
+	border-radius: 5px;
+}
+
+
+
+.button1:hover
+{
+	background-color: #222;
+	color:#ffffff;
+	border: none;
+	border: 1px solid #222;
+}
+
+.button
+{
+	margin-left: 5%;
+	padding-top: 4%;	
+}
+
+.content1
+{
+	/*height:50%;*/
+	padding-top: 4%;
+	padding-bottom: 3%;
+}
+
+
+.margin1
+{
+	margin-top: 4%;
+} 
+
+.margin2
+{
+	margin-top: 8%;	
+}
+
+body{
+	overflow:hidden;
+}
+
+.input
+{
+	margin-left: 4%;
+}
+

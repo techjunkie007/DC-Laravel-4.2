@@ -1,0 +1,142 @@
+body
+{
+	font-family: Arial;
+}
+
+.footer
+{
+	z-index: 9999;
+}
+.block1
+{
+	height: 81.8%;
+	padding: 6%;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+.InformationBox
+{
+	border-radius: 5px;
+	border: 1px solid #222;
+	padding: 2% 0% 0% 2%;
+}
+
+ul
+{
+	list-style-type: none;
+}
+
+.Info
+{
+	/*border-left: 2px solid #222;*/
+	padding-left: 5%;
+	
+}
+
+.thumbnail
+{
+	border:1px solid #222;
+		
+	margin: 2% 4% 0% 2%;
+}
+
+.border
+{
+	t: 2px solid #222;
+}
+
+hr
+{
+	border:1px solid #222;
+	margin-top: 0%;
+	margin-bottom: 5%;
+	margin-left: -5%;
+}
+
+.Name
+{
+	font-size: 300%;
+	padding: 3% 2%;
+
+}
+
+.St_no
+{
+	padding: 2% 0% 4%;
+	font-size:200%; 
+}
+
+.Branch
+{
+	font-size: 180%;
+	padding: 0% 0% 6%;
+	
+}
+
+.Text
+{
+	font-size: 150%;
+	color: #aaa;
+	height: 22%;
+}
+
+.register_button
+{
+	float: right;
+	transition:all 0.4s ease;
+	border-radius: 3px;
+	border:#f0ad4e;
+	color: #fff;
+	/*background-color: transparent;*/
+	font-family: Sansation;
+	float: right;
+	margin-right: 15px;
+	letter-spacing: 0.13em;
+}
+
+
+/*making Text -responsive*/
+
+
+@media all and (max-width: 1200px) , (max-height:600px)  { /* screen size until 1200px */
+    body {
+        font-size: 1.50em; /* 1.5x default size */
+    }
+}
+
+@media (max-height:550px)  { /* screen size until 1200px */
+    body {
+        font-size: 1.em; /* 1.5x default size */
+    }
+}
+
+@media all and (max-width: 900px) , (max-height:600px)  { /* screen size until 1200px */
+    body {
+        font-size: 01em; /* 1.5x default size */
+    }
+}
+@media all and (max-width: 1000px) , (max-height:500px)  { /* screen size until 1200px */
+      body {
+        font-size: 1em; /* 1.5x default size */
+    }
+    .register_button
+    {
+    	font-size: 1.5em;
+    	/*width: 30%;*/
+    }
+}
+
+@media all and (max-width: 550px) { /* screen size until 1200px */
+    .register_button
+    {
+    	font-size: 1.7em;
+    }
+}
+
+@media all and (max-width: 900px) { /* screen size until 1200px */
+    .thumbnail
+    {
+    	/*height: 70%;*/
+    }
+}

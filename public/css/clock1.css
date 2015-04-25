@@ -1,0 +1,137 @@
+button
+{
+	/*letter-spacing: 1px;*/
+}
+
+.clock
+{
+	padding-top: 4.5%;
+	padding-left: 9%;
+}
+
+.fhieght
+{
+	padding-top: 5%;
+}
+
+
+
+.or
+{
+	text-align: center;
+	color: #eea236;
+	height: 10%;
+	padding-top: 1.5%;
+	font-family: Couture;
+	/*letter-spacing: 1%; */
+
+}
+
+.bt_style
+{
+  /*letter-spacing: 1px;*/
+	background-color: transparent;
+	color: #282828;
+	border: 1px solid #282828;
+	margin-right: 5%;
+	transition:all .4s ease;
+}
+
+.bt_style:hover
+{
+	color:#eee;
+	background-color: #282828;
+
+}
+
+.buttons
+{
+	padding-left: 9.5%;
+}
+
+.bottom_pad
+{
+
+}
+
+@media all and (max-width: 1700px){
+
+	.clock
+    {
+    	padding-left: 13%;
+    }
+}
+
+@media all and (max-width: 1200px) { 				/* screen size until 1200px */
+    
+    .clock
+    {
+    	padding-left: 9%;
+    }
+
+    h1
+    {
+        font-size: 2.5em; /* 1.5x default size */    	
+    }
+
+}
+
+@media all and (max-width: 1000px) { 				/* screen size until 1000px */
+    
+    .clock
+    {
+    	margin-left: 10%;
+    }
+
+}
+
+@media all and (max-width: 700px) { 				/* screen size until 800px */
+    
+    .clock
+    {
+    	margin-left: 10%;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*media queries from inside.css */
+
+@media (max-width: 1250px) {
+  h1 {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 30px;
+  }
+  .header
+  {
+  	padding-top: 0.6%;
+  }
+}
+
+@media (max-width: 1060px) {
+  h1 {
+    font-size: 25px;
+  }
+
+  .header
+  {
+  	padding-top: 1%;
+  }
+}
