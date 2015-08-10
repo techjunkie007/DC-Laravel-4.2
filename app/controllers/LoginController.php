@@ -20,7 +20,7 @@ class LoginController extends BaseController {
 		}
 		else
 		{
-			return "Hello";
+			return "Not authenticated";
 
 		}
 		

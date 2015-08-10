@@ -10,7 +10,6 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
 //Login Submit Route
 Route::post('login', array('as' => 'submit_login', 'uses' => 'LoginController@proceed'));
 //Login Route
