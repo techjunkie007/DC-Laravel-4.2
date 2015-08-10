@@ -10,6 +10,12 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::get('datab', function(){
+	return View::make('master');
+});
+Route::get('test', function(){
+	return Redirect::to('datab')->with('message', 'hello');
+});
 //Login Submit Route
 Route::post('login', array('as' => 'submit_login', 'uses' => 'LoginController@proceed'));
 //Login Route

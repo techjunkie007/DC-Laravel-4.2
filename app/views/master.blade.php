@@ -56,6 +56,16 @@
         <!-- Middle Content -->
         <div class="wrapper row block">
 
+        	<!-- Yield Message -->
+        	@if( Session::has('message'))
+        	<div class="alert alert-info">
+    			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    			<strong>
+        			{{ Session::get('message') }}
+    			</strong> 
+  			</div>
+        	@endif
+
         	<!-- Yield Flipclock -->
 
         	@yield('flipclock')
