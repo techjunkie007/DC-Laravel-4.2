@@ -17,6 +17,8 @@
 	{{ HTML::style('css/inside.css') }}
 	<!-- Clock1 CSS-->
 	{{ HTML::style('css/clock1.css') }}
+	<!-- Register CSS -->
+	{{ HTML::style('css/register.css') }}
 
 	<!-- Scripts -->            
 	<!-- JQuery -->

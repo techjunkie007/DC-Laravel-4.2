@@ -30,7 +30,8 @@ class LoginController extends BaseController {
 
 	function logout(){
 
-	 Auth::logout();
+	 //Auth::logout();
+	 Session::flush();
 
 	 return Redirect::to('login');
 	}
