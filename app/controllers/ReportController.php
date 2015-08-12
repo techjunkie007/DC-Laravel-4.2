@@ -25,44 +25,42 @@ class ReportController extends BaseController {
 		 											->where('entry_time', '>=', $fromDate)
 		 											->get();
 		 	}
-		 	// else{
+		 	else{
 		 		
-		 	// 	switch ($branch) {
-		 	// 		case 1:
-		 	// 			$branch="CS";
-		 	// 			break;
-		 	// 		case 2:
-		 	// 			$branch="IT";
-		 	// 			break;
-		 	// 		case 3:
-		 	// 			$branch="EC";
-		 	// 			break;
-		 	// 		case 4:
-		 	// 			$branch="EN";
-		 	// 			break;
-		 	// 		case 5:
-		 	// 			$branch="EI";
-		 	// 			break;
-		 	// 		case 6:
-		 	// 			$branch="CE";
-		 	// 			break;
-		 	// 		case 7:
-		 	// 			$branch="ME";
-		 	// 			break;
-		 	// 		case 8:
-		 	// 			$branch="MCA";
-		 	// 			break;
-		 	// 		case 9:
-		 	// 			$branch="MBA";
-		 	// 			break;
-		 			
-		 			
-		 	// 	}
+		 		switch ($branch) {
+		 			case 1:
+		 				$branch="CS";
+		 				break;
+		 			case 2:
+		 				$branch="IT";
+		 				break;
+		 			case 3:
+		 				$branch="EC";
+		 				break;
+		 			case 4:
+		 				$branch="EN";
+		 				break;
+		 			case 5:
+		 				$branch="EI";
+		 				break;
+		 			case 6:
+		 				$branch="CE";
+		 				break;
+		 			case 7:
+		 				$branch="ME";
+		 				break;
+		 			case 8:
+		 				$branch="MCA";
+		 				break;
+		 			case 9:
+		 				$branch="MBA";
+		 				break;
+		 			}
 
 		 		$entries= Students::latest('entry_time')->where('entry_time', '<=', $toDate)
 		 											->where('entry_time', '>=', $fromDate)
 		 											->get();
-		 		//}
+		 	}
 		 	
 		 	return View::make('range_report')->with('entries',$entries)
 		 	->with('branch',$branch)
@@ -141,14 +139,14 @@ class ReportController extends BaseController {
 
 
 			$entries = DB::table('Counters')->where('temp_counter', '3')->get();
-		 	return View::make('ThreeEntryReport')->with('entries',$entries);
+		 	return View::make('three_entry_report')->with('entries',$entries);
 	}
 
 	function download(){
 
 		$entries = DB::table('Counters')->where('temp_counter', '3')->get();
 
-		 	return View::make('ThreeEntryReportGenerated')->with('entries',$entries);
+		 	return View::make('generated_three_entry_report')->with('entries',$entries);
 	}
 
 }

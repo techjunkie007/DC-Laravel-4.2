@@ -37,11 +37,16 @@
 	<div class="container-fluid">
 		<!-- Header -->
 		<div class="header row">
-			<!-- Empty -->
+            <!-- Empty -->
 			<div class="col-md-2 col-sm-1">
 			</div>
 			<!-- College Name Heading -->
 			<h1 class="text-center center col-md-7 col-sm-8">AKGEC LATE ENTRY SYSTEM</h1>
+
+            <!-- Yield Print Button -->
+            
+            @yield('print_button')
+            
 			<!-- Logout Button -->
 			{{ Form::open(['route' => 'logout_submit']) }}
 			<!-- Empty -->

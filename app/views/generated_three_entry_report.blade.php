@@ -38,7 +38,7 @@
 
                 
                 
-                $info = \DB::table('Students_infos')->where('student_id', $entry->student_id)->first();
+                $info = DB::table('Students_infos')->where('student_id', $entry->student_id)->first();
                 $passInfo = array('student_id' =>$info->student_id ,
                     'student_name'=>$info->student_name,
                     'branch'=>$info->branch,
