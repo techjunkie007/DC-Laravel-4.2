@@ -25,47 +25,46 @@ class ReportController extends BaseController {
 		 											->where('entry_time', '>=', $fromDate)
 		 											->get();
 		 	}
-		 	else{
+		 	// else{
 		 		
-		 		switch ($branch) {
-		 			case 1:
-		 				$branch="CS";
-		 				break;
-		 			case 2:
-		 				$branch="IT";
-		 				break;
-		 			case 3:
-		 				$branch="EC";
-		 				break;
-		 			case 4:
-		 				$branch="EN";
-		 				break;
-		 			case 5:
-		 				$branch="EI";
-		 				break;
-		 			case 6:
-		 				$branch="CE";
-		 				break;
-		 			case 7:
-		 				$branch="ME";
-		 				break;
-		 			case 8:
-		 				$branch="MCA";
-		 				break;
-		 			case 9:
-		 				$branch="MBA";
-		 				break;
+		 	// 	switch ($branch) {
+		 	// 		case 1:
+		 	// 			$branch="CS";
+		 	// 			break;
+		 	// 		case 2:
+		 	// 			$branch="IT";
+		 	// 			break;
+		 	// 		case 3:
+		 	// 			$branch="EC";
+		 	// 			break;
+		 	// 		case 4:
+		 	// 			$branch="EN";
+		 	// 			break;
+		 	// 		case 5:
+		 	// 			$branch="EI";
+		 	// 			break;
+		 	// 		case 6:
+		 	// 			$branch="CE";
+		 	// 			break;
+		 	// 		case 7:
+		 	// 			$branch="ME";
+		 	// 			break;
+		 	// 		case 8:
+		 	// 			$branch="MCA";
+		 	// 			break;
+		 	// 		case 9:
+		 	// 			$branch="MBA";
+		 	// 			break;
 		 			
 		 			
-		 		}
+		 	// 	}
 
 		 		$entries= Students::latest('entry_time')->where('entry_time', '<=', $toDate)
 		 											->where('entry_time', '>=', $fromDate)
 		 											->get();
-		 		}
+		 		//}
 		 	
-		 	return View::make('RangeReport')
-		 	->with('entries',$entries)
+		 	return View::make('range_report')->with('entries',$entries)
 		 	->with('branch',$branch)
 		 	->with('fromDate',$fromDate)
 		 	->with('toDate',$toDate);
@@ -130,7 +129,7 @@ class ReportController extends BaseController {
 		 		}
 		 	
 		 	
-		 	return View::make('DailyReportGenerated')
+		 	return View::make('daily_report')
 		 	->with('entries',$entries)
 		 	->with('branch',$branch)
 		 	->with('date',$date);

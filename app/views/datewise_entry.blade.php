@@ -1,126 +1,126 @@
-<html>
-<head>
-    <title>Late Entry | Datewise</title>
+<!-- Extends Master -->
+@extends('master')
 
-    <!-- bootstrapcdn -->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <!-- css file -->
-    <link rel="stylesheet" type="text/css" href="css/inside.css">
-    <!-- css file -->
-    <link rel="stylesheet" type="text/css" href="css/mainpage.css">     
-    <!-- clock1 css-->
-    <link rel="stylesheet" type="text/css" href="css/clock1.css">
-    <!-- register css -->
-    <link rel="stylesheet" type="text/css" href="css/register.css">
+<!-- Yield Page Header Title-->
+@section('title', 'Late Entry | Datewise Entry')
 
-       <!-- javascript          -->
-                                            <!-- jquery -->
-                                            <script type="text/javascript" src="js/jquery.js"></script>
+<!-- Yield Logout Button -->
+@section('logout_button')
 
-                                            <!-- Latest compiled and minified JavaScript -->
-                                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- Logout Form Open -->
+    {{ Form::open(['route' => 'logout_submit']) }}
+    <!-- Logout Button -->
+    <button class="btn btn-default col-md-1 col-sm-1 logout">
+    <span class="glyphicon glyphicon-off" aria-hidden="true">
+    </span>
+    <span> Logout</span>
+    <!-- Logout Form Close -->
+    {{ Form::close() }}
 
+@endsection
 
-                                            <!-- bootstrap -->  
-                                            <script type="text/javascript" src="js/bootstrap.js"></script>     
+<!-- Yield Mid-Content -->
+@section('mid_content')
 
-</head>
-
-<body>
-    <div class="container-fluid">
-        <!-- header -->
-        <div class="header row">
-            <h1 class="text-center"><strong>AKGEC LATE ENTRY SYSTEM</strong></h1>
-            <!-- logout button at top -->
-            {!!  Form::open(['route' => 'logout_submit']) !!}
-            <div class="col-md-1 col-sm-1"></div>
-            <!-- logout button at top -->
-            
-
-            <!-- {!!Form::submit('Logout', array('class' => 'btn btn-default col-md-1 col-sm-1 logout')  ) !!} -->
-
-            
-            <button class="btn btn-default col-md-1 col-sm-1 logout">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                <span> Logout</span>
-                <!-- empty -->
-                {!! Form::close() !!}
-                <!-- back button at top -->
-                {!!  Form::open(['route' => 'back_button']) !!}
-                {!!Form::submit('BACK', array('class' => 'btn btn-default col-md-offset-1 logout', 'id' => 'backButton')  ) !!}
-                {!! Form::close() !!}
+    <div class="container block1">
+        <div class="row InformationBox">
+            <div class="col-md-3 col-sm-4 thumbnail">
+            <!-- Thumbnail of Student -->
+            <?php 
+            $image_path="images/".$info->student_id.".jpg";
+            echo "<img src=".$image_path.">";
+            ?>
             </div>
+            <!-- Empty -->
+            <div class="col-md-1 col-sm-1">
+            </div>
+            <div class="col-md-8 col-sm-8 Info">
+                <ul>
+                    <!-- Student's Name -->
+                    <li class=" row Name">{{ $info->student_name  }}</li><hr>
+                    <!-- Student Number -->
+                    <li class="row St_no">{{ $info->student_id }}</li>
+                    <!-- Student's Branch -->
+                    <li class="row Branch">
+                        <?php
+                        switch($info->branch)
+                        {
+                            case 'CS': 
+                            {
+                                $branch="Computer Science";
+                                break;
+                            }
+                            case 'IT': 
+                            {
+                                $branch="Information Technology";
+                                break;
+                            } 
+                            case 'EN': 
+                            {
+                                $branch="Electrical Engineering";
+                                break;
+                            }
+                            case 'EC': 
+                            {
+                                $branch="Electronics & Communication";
+                                break;
+                            }
+                            case 'ME': 
+                            {
+                                $branch="Mechanical";
+                                break;
+                            }
+                            case 'EI': 
+                            {
+                                $branch="Electronics & Instrumentation";
+                                break;
+                            } 
+                            case 'CE': 
+                            {
+                                $branch="Civil Engineering";
+                                break;
+                            }
+                            case 'MCA': 
+                            {
+                                $branch="MCA";
+                                break;
+                            }
+                            case 'MBA': 
+                            {
+                                $branch="MBA";
+                                break;
+                            }
+                        }
+                        echo $branch;
+                        ?>
+                    </li>
+                    <li class="row Text">
+                        <!-- Number of Entries Message -->
+                        <?php
+                        $count=0;
+                        foreach ($entries as $entry) 
+                        $count++;
+                        ?>         
+                        {{$info->student_name." has ".$count." Late Entries till now."}} 
+                    </li>
+                </ul>
+                <!-- Register Entry Form Open -->
+                {{ Form::open(['route' => 'register_entry']) }}
+                <div class="row">
+                    <!-- Submit Entry Button -->
+                    {{ Form::submit('Register Late Entry', array('class' => 'btn-lg btn-warning register_button', 'id' => 'loginButton')  ) }}
+                </div>
+                <!-- Register Entry Form Close -->
+                {{ Form::close() }}
+            </div>
+        </div>
+    </div>
+@endsection
 
-            <!-- jumbotron -->
-            <div class="wrapper row block">
-                <div class="jumbotron col-md-8 jbt" style="padding-right:0px; padding-left:4%;">    <!-- padding for accomodating button -->
-                    <!-- pic -->
-                    <div class="col-md-2 thumbnail">                        
-                    </div>
-                    <!-- Info -->
-                    <div class="col-md-8 info">
-                        <!-- name -->
-                        <div class="name">
-                            {{ $info->student_name  }}
-                        </div>
-                        <hr>
-                        <!-- student no. -->
-                        <div class="stud_no">
-                            {{ $info->student_id }}
-                        </div>  
-                        <!-- branch -->
-                        <div class="branch">
-                            <?php
-                            switch($info->branch){
-                                case 'CS': {
-                                    $branch="Computer Science";
-                                    break;}
-                                    case 'IT': {
-                                        $branch="Information Technology";
-                                        break;} 
-                                        case 'EN': {
-                                            $branch="Electrical Engineering";
-                                            break;}
-                                            case 'EC': {
-                                                $branch="Electronics & Communication";
-                                                break;}
-                                                case 'ME': {
-                                                    $branch="Mechanical";
-                                                    break;}
-                                                    case 'EI': {
-                                                        $branch="Electronics & Instrumentation";
-                                                        break;} 
-                                                        case 'CE': {
-                                                            $branch="Civil Engineering";
-                                                            break;}
-                                                            case 'MCA': {
-                                                                $branch="MCA";
-                                                                break;}
-                                                                case 'MBA': {
-                                                                    $branch="MBA";
-                                                                    break;}
-                                                                }
-                                                                echo $branch;
-                                                                ?>
-
-                                                            </div>
-                                                        </div> 
-
-                                                        {!! Form::open(['route' => 'register_entry']) !!}
-                                                        {!!Form::submit('Register Late Entry', array('class' => 'btn-lg btn-warning register_button', 'id' => 'loginButton')  ) !!}
-                                                        {!! Form::close() !!}
-
-                                                    </div>                                  
-                                                </div>
 
 
-                                                <!-- footer -->
-                                                <div class="footer row">
-                                                    <h4 class="text-center">&copy;<strong>SOFTWARE INCUBATOR</strong></h4>
-                                                </div>
-                                            </div>                              
 
 
-                                         
-                                        </body>
-                                        </html>
+
+
+
