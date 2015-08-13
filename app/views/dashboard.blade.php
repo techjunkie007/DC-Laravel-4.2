@@ -82,7 +82,7 @@
             </button>
         </a>
         <!-- Generate Report Form Open -->
-        {{  Form::open(['route' => 'report_submit']) }}
+        {{  Form::open(['url' => 'report-panel']) }}
         <div class="col-md-1 col-sm-1">
         </div>
         <!-- Generate Report Submit Button -->
@@ -103,7 +103,7 @@
                      <center> <h3>Daily Records Panel</h3> </center>
                 </div>
                 <!-- Daily Report Form Open -->
-                {{  Form::open(['route' => 'daily_report']) }}
+                {{  Form::open(['url' => 'daily-report']) }}
                 <!-- Modal Body -->
                 <div class="modal-body">
                     <!-- Calendar -->

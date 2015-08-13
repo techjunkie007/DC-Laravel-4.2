@@ -2,16 +2,23 @@
 
 class ReportController extends BaseController {
 
-	//Report Menu
-
-	function report_menu(){
-
-		return View::make('report');
-		
+	//Show Report Menu 
+	function report_menu()
+	{
+		if(Auth::check())
+		{
+			//Report Panel View
+			return View::make('report');
+		}
+		else
+		{
+			//Login Again with Message
+			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
+		}
 
 	}
-//Generate Report
 
+	//
 	function generate_report(){
 		
 		
