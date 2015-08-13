@@ -33,7 +33,7 @@
 @section('mid_content')
     <div class="container block">
         <div class="row Heading">
-            <h2 class="cl-md-offset-1 tb">Overall Records Report</h2>
+            <h2 class="cl-md-offset-1 tb"> Students with 3 Late Entries </h2>
             <div class="overflo">
                 <table class="table">
                     <thead>

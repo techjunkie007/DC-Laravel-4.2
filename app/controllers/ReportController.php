@@ -162,4 +162,20 @@ class ReportController extends BaseController {
 		return View::make('generated_three_entry_report')->with('entries',$entries);
 	}
 
+	//Generate Range Report
+	function generate_range_report()
+	{
+		$from_date =Input::get('reportFromDate');
+		$to_date =Input::get('reportToDate');
+		$branch=Input::get('branch');
+		//Retrieve Entries from Students
+		$entries= DB::table('Students')->where('entry_time', '>', $from_date)
+									   ->where('entry_time', '<', $to_date)->get();
+		return View::make('range_report')->with('entries', $entries)
+										 ->with('branch', $branch)
+										 ->with('from_date', $from_date)
+										 ->with('to_date', $to_date);								
+
+	}
+
 }

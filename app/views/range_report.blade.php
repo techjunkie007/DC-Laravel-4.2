@@ -26,7 +26,7 @@
             @if($branch=='0')
             <?php $branch="All" ?> 
             @endif
-            <h2 class="cl-md-offset-1 tb">Late Comers from {{$fromDate}} to {{$toDate}} :</h2>
+            <h2 class="cl-md-offset-1 tb">Late Comers from {{$from_date}} to {{$to_date}} :</h2>
             <div class="overflo">
                 <!-- Table for Records -->
                 <table class="table">
@@ -44,14 +44,14 @@
 
 
  <?php
- /*
+ 
             $serial=1;
             foreach ($entries as $entry) {
 
 
                 
                 
-                $info = \DB::table('Students_infos')->where('student_id', $entry->student_id)->first();
+                $info = DB::table('Students_infos')->where('student_id', $entry->student_id)->first();
                 $passInfo = array('student_id' =>$info->student_id ,
                     'student_name'=>$info->student_name,
                     'branch'=>$info->branch,
@@ -64,11 +64,11 @@
             }
             elseif ($branch=='0') {
                 
-                echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_time'] . "</td></tr>";;
+                echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_time'] . "</td></tr>";
                 $serial++;
             }
                 
-            } */
+            } 
             
             ?>
 
