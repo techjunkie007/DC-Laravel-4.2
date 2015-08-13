@@ -37,6 +37,9 @@ Route::post('datewise-register', array('uses'=>'DashboardController@save_entry')
 //Normal Register Entry Click Route
 Route::post('register', array('uses'=>'DashboardController@save_entry'));
 
+//New Student Entry Route
+Route::post('new-student', array('uses'=>'DashboardController@add_student'));
+
 
 
 
@@ -74,7 +77,7 @@ Route::post('generate_daily_report', array('as'=>'daily_report', 'uses'=>'Report
 //Three Entry Report Generate
 Route::post('three_entry_report', array('as'=>'generate_three_entry_report', 'uses'=>'ReportController@three_entry'));
 //New Entry Submit 
-Route::post('new_entry', array('as'=>'details_submit', 'uses'=>'DashboardController@new_entry'));
+//Route::post('new_entry', array('as'=>'details_submit', 'uses'=>'DashboardController@new_entry'));
 //Download Word Submit 
 Route::post('download_report', array('as'=>'download', 'uses'=>'ReportController@download'));
 

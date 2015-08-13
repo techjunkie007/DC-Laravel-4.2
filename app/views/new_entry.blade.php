@@ -2,7 +2,7 @@
 @extends('master')
 
 <!-- Yield Page Header Title-->
-@section('title', 'Late Entry | Today\'s Entry')
+@section('title', 'Late Entry | New Student Entry')
 
 <!-- Yield Logout Button -->
 @section('logout_button')
@@ -61,7 +61,7 @@
                 <h3>Enter Particulars</h3>
             </div>
             <!-- Add New Student Form Open -->
-            {{ Form::open(['route' => 'details_submit']) }}
+            {{ Form::open(['url' => 'new-student']) }}
             <!-- Modal Body -->
             <div class="modal-body">
                 <div class="input-group pd">

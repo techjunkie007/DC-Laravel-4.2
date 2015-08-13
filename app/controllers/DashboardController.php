@@ -159,5 +159,15 @@ class DashboardController extends BaseController
 				->update(array('total_counter'=> $total_count, 'temp_counter'=> $temp_count));
 		}
 	}
+
+	//Add New Student
+	function add_student()
+	{
+		$student_no=Input::get('studentNumber');
+		//Add Student to Database
+		DB::table('Students_infos')->insert(['student_id' => $student_no,'student_name' => Input::get('studentName'), 'year' => Input::get('studentYear'), 'branch' => Input::get('studentBranch') ]);
+		$message= "New Student with Student Number ". $student_no. " added to Database.";
+		return Redirect::to('dashboard')->with('message', $message);
+	}
 }
 
