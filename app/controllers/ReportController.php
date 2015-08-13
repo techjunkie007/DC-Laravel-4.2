@@ -141,19 +141,25 @@ class ReportController extends BaseController {
 		 	
 
 
-	}
-	function three_entry(){
 
-
-			$entries = DB::table('Counters')->where('temp_counter', '3')->get();
-		 	return View::make('three_entry_report')->with('entries',$entries);
 	}
 
-	function download(){
-
+	//Generate Three Entry Report
+	function generate_three_entry_report()
+	{
+		//Retrieve Entries from Counters Table
 		$entries = DB::table('Counters')->where('temp_counter', '3')->get();
+		//Three Report View 
+		return View::make('three_entry_report')->with('entries',$entries);
+	}
 
-		 	return View::make('generated_three_entry_report')->with('entries',$entries);
+	//Download the Word Document of Report
+	function download_report()
+	{
+		//Retrieve Entries from Counters Table
+		$entries = DB::table('Counters')->where('temp_counter', '3')->get();
+		//Report Download View
+		return View::make('generated_three_entry_report')->with('entries',$entries);
 	}
 
 }

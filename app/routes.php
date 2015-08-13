@@ -44,11 +44,13 @@ Route::post('new-student', array('uses'=>'DashboardController@add_student'));
 Route::post('report-panel', array('uses'=>'ReportController@report_menu'));
 
 //Three Entry Report Route
-Route::post('three-entry-report', array('uses'=>'ReportController@'));
+Route::post('three-entry-report', array('uses'=>'ReportController@generate_three_entry_report'));
 
 //Range Report Route
-Route::post('range-report', array('uses'=>'ReportController@'));
+Route::post('range-report', array('uses'=>'ReportController@generate_range_report'));
 
+//Download Report Route
+Route::post('download', array('uses'=>'ReportController@download_report'));
 
 
 
