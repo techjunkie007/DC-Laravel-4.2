@@ -31,7 +31,7 @@
 <!-- Yield Mid-Content -->
 @section('mid_content')
     <!-- Datewise Form Open -->
-    {{ Form::open(['route' => 'datewise_info']) }}
+    {{ Form::open(['url' => 'student']) }}
     <div class="row">   
         <div class="col-md-6 col-md-offset-3 fhieght">
             <div class="input-group">
@@ -56,7 +56,7 @@
         OR SIMULATE NEW DATE 
     </div>
     <!-- New Date Simulation Form Open-->
-    {{  Form::open(['route' => 'date_change_submit']) }}
+    {{  Form::open(['url' => 'datewise-dashboard']) }}
     <div class="row fheight1">
         <div class="col-md-6 col-md-offset-3 bottom_pad" style="height:100px;">
             <div class="form-group">

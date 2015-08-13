@@ -15,7 +15,7 @@
             <div class="content1 row">
                 <!-- Login Form Open-->
                 <form class="form-horizontal col-md-12" role="form" method="post">
-                {{ Form::open(array('method'=>'post','url'=>'login')) }}
+                {{ Form::open(array('url'=>'login')) }}
                 <!-- Form Fields-->
                     <div class="form-group margin1">
                         <label for="inputEmail3" class="col-sm-3 col-md-2 control-label">Username

@@ -32,7 +32,7 @@
 @section('mid_content')
 
     <!-- Search Student Form Open-->
-    {{ Form::open(['route' => 'dashboard_info']) }}
+    {{ Form::open(['url' => 'student']) }}
     <div class="row">   
         <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 fhieght">
             <div class="input-group">
@@ -52,7 +52,7 @@
     OR MAKE DATEWISE ENTRY
     </div>
     <!-- Datewise Entry Form Open -->
-    {{  Form::open(['route' => 'date_submit']) }}
+    {{  Form::open(['url' => 'datewise-dashboard']) }}
     <!-- Date Picker -->
     <div class="row fheight1">
         <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 bottom_pad" style="height:100px;">

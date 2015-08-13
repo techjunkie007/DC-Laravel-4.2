@@ -10,31 +10,59 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::get('datab', function(){
-	return View::make('master');
+
+//Routing Empty URL to Login
+Route::get('/', function(){
+	return Redirect::to('login');
 });
-Route::get('test', function(){
-	return Redirect::to('datab')->with('message', 'hello');
-});
+
+//Login Page Route
+Route::get('login', array('uses'=>'LoginController@login'));
+
+//Login Submit Credentials Route
+Route::post('login', array('uses'=>'LoginController@proceed'));
+
+//Login Page Route
+Route::get('dashboard', array('uses'=>'DashboardController@show_menu'));
+
+//Student Info Page
+Route::post('student', array('uses'=>'DashboardController@show_student'));
+
+//Datewise Dashboard Route
+Route::post('datewise-dashboard', array('uses'=>'DashboardController@datewise_entry'));
+
+//Datewise Register Entry Click Route
+Route::post('datewise-register', array('uses'=>'DashboardController@save_entry'));
+
+//Normal Register Entry Click Route
+Route::post('register', array('uses'=>'DashboardController@save_entry'));
+
+
+
+
+
+
+
+
 //Login Submit Route
-Route::post('login', array('as' => 'submit_login', 'uses' => 'LoginController@proceed'));
+//Route::post('login', array('as' => 'submit_login', 'uses' => 'LoginController@proceed'));
 //Login Route
-Route::get('login', array('as' => 'login', 'uses' => 'LoginController@login'));
+//Route::get('login', array('as' => 'login', 'uses' => 'LoginController@login'));
 //Dashboard get Route
-Route::get('dashboard', array('as' => 'dashboard', 'uses' => 'DashboardController@show_menu'));
+//Route::get('dashboard', array('as' => 'dashboard', 'uses' => 'DashboardController@show_menu'));
 //Date Submit Route
-Route::post('datewise', array('as' => 'date_submit', 'uses' => 'DashboardController@datewise_entry'));
-Route::get('datewise', 'DashboardController@datewise_entry');
+//Route::post('datewise', array('as' => 'date_submit', 'uses' => 'DashboardController@datewise_entry'));
+//Route::get('datewise', 'DashboardController@datewise_entry');
 //Logout Submit Route
 Route::post('logout', array('as' => 'logout_submit', 'uses' => 'LoginController@logout'));
 //Student Info Submit Route
-Route::post('dashboard', array('as' => 'dashboard_info', 'uses' => 'DashboardController@store'));
+//Route::post('dashboard', array('as' => 'dashboard_info', 'uses' => 'DashboardController@store'));
 //Register Entry Route
-Route::post('dashboard/entry', array('as' => 'register_entry', 'uses' => 'DashboardController@throw_entry'));
+//Route::post('dashboard/entry', array('as' => 'register_entry', 'uses' => 'DashboardController@throw_entry'));
 //Datewise Student Info Route
-Route::post('datewise/entry', array('as' => 'datewise_info', 'uses' => 'DashboardController@store'));
+//Route::post('datewise/entry', array('as' => 'datewise_info', 'uses' => 'DashboardController@store'));
 //New Datewise Entry Route
-Route::post('datewise', array('as' => 'date_change_submit', 'uses' => 'DashboardController@new_datewise_entry'));
+//Route::post('datewise', array('as' => 'date_change_submit', 'uses' => 'DashboardController@new_datewise_entry'));
 //Back Button Route
 Route::post('dashboard/back', array('as' =>'back_button', 'uses' => 'DashboardController@back_button'));
 //Report Button Route

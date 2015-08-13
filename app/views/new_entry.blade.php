@@ -27,6 +27,7 @@
             <div class="col-md-3 col-sm-4 thumbnail">
             <!-- Thumbnail of Student -->
             <?php 
+            $Session= Session::all();
             $image_path="images/".$Session['student_no'].".jpg";
             echo "<img src=".$image_path.">";
             ?>

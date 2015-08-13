@@ -95,17 +95,12 @@
                         ?>
                     </li>
                     <li class="row Text">
-                        <!-- Number of Entries Message -->
-                        <?php
-                        $count=0;
-                        foreach ($entries as $entry) 
-                        $count++;
-                        ?>         
-                        {{$info->student_name." has ".$count." Late Entries till now."}} 
+                        <!-- Number of Entries Message -->     
+                        {{$info->student_name." has ".$counter." Late Entries till now."}} 
                     </li>
                 </ul>
                 <!-- Register Entry Form Open -->
-                {{ Form::open(['route' => 'register_entry']) }}
+                {{ Form::open(['url' => 'register']) }}
                 <div class="row">
                     <!-- Submit Entry Button -->
                     {{ Form::submit('Register Late Entry', array('class' => 'btn-lg btn-warning register_button', 'id' => 'loginButton')  ) }}

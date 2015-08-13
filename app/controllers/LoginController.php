@@ -2,38 +2,39 @@
 
 class LoginController extends BaseController {
 
-	//Login view return
-	function login(){
-
-
+	//Login View Return
+	function login()
+	{
 		return View::make('login');
 	}
 
-	function proceed(){
-
-		$credential = array('username'=>Input::get('username'),
+	//Authenticating
+	function proceed()
+	{
+		$credentials = array('username'=>Input::get('username'),
 							'password'=>Input::get('password'));
 
-		if(Auth::attempt($credential))
-		{
-			return View::make('dashboard');
+		if(Auth::attempt($credentials))
+		{	
+			//Dashboard
+			return Redirect::to('dashboard');
 		}
 		else
-		{
+		{	
+			//Not Authenticated
 			return "Not authenticated";
-
 		}
-		
-
-    
 	}
 
-	function logout(){
-
-	 //Auth::logout();
-	 Session::flush();
-
-	 return Redirect::to('login');
+	//Logout User
+	function logout()
+	{	
+		//Flush Session
+		Session::flush();
+	 	//Auth Logout
+	 	Auth::logout();
+	 	//Redirect to
+	 	return Redirect::to('login')->with('message', 'You Logged Out. Log In Again');
 	}
 
 }
