@@ -159,7 +159,7 @@ class ReportController extends BaseController {
 		//Retrieve Entries from Counters Table
 		$entries = DB::table('Counters')->where('temp_counter', '3')->get();
 		//Report Download View
-		return View::make('generated_three_entry_report')->with('entries',$entries);
+		return View::make('generated_three_entry_report')->with('entries',$entrzies);
 	}
 
 	//Generate Range Report
@@ -168,14 +168,57 @@ class ReportController extends BaseController {
 		$from_date =Input::get('reportFromDate');
 		$to_date =Input::get('reportToDate');
 		$branch=Input::get('branch');
+		//Specify Branch
+		$branch_char= $this->specify_branch($branch);
 		//Retrieve Entries from Students
-		$entries= DB::table('Students')->where('entry_time', '>', $from_date)
-									   ->where('entry_time', '<', $to_date)->get();
+		$entries= DB::table('Students')->select('student_id','entry_time')
+										->where('entry_time', '>=', $from_date)
+									   ->where('entry_time', '<=', $to_date)->get();
+
 		return View::make('range_report')->with('entries', $entries)
-										 ->with('branch', $branch)
+										 ->with('branch', $branch_char)
 										 ->with('from_date', $from_date)
 										 ->with('to_date', $to_date);								
 
+	}
+
+	function specify_branch($branch_id)
+	{
+		$branch_char='';
+		switch ($branch_id) 
+		{
+			case 0:
+				$branch_char='All';
+				break;
+			case 1:
+				$branch_char='CS';
+				break;
+			case 2:
+				$branch_char='IT';
+				break;
+			case 3:
+				$branch_char='EC';
+				break;
+			case 4:
+				$branch_char='EN';
+				break;
+			case 5:
+				$branch_char='EI';
+				break;
+			case 6:
+				$branch_char='CE';
+				break;
+			case 7:
+				$branch_char='ME';
+				break;
+			case 8:
+				$branch_char='MCA';
+				break;
+			case 9:
+				$branch_char='MBA';
+				break;
+		}
+		return $branch_char;
 	}
 
 }
