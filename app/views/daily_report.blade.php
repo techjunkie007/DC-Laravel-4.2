@@ -42,26 +42,31 @@
 					</thead>
 					<!-- Table Body -->
 					<tbody>
+
 					<?php
-					$serial=1;
-					?>
-					@foreach ($entries as $entry)
-						{{$info = DB::table('Students_infos')->where('student_id', $entry['student_id'])->first();}}
-						{{$passInfo = array('student_id' =>$info->student_id,
-											'student_name'=>$info->student_name,
-											'branch'=>$info->branch,
-											'year'=>$info->year,
-											'entry_date' => $entry->entry_time);}}
-									
-						@if ($passInfo['branch']==$branch) 
-							{{"<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_date'] . "</td></tr>"}}
-							<?php $serial++; ?>
-						@endif
-						@if ($branch=='0')
-							{{"<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_date'] . "</td></tr>"}}
-							<?php $serial++; ?>
-						@endif
-					@endforeach
+                    $serial=1;
+                    foreach ($entries as $entry) 
+                    {
+                        $info = DB::table('Students_infos')->where('student_id', $entry->student_id)->first();
+                        $passInfo = array('student_id' =>$info->student_id ,
+                                            'student_name'=>$info->student_name,
+                                            'branch'=>$info->branch,
+                                            'year'=>$info->year,
+                                            'entry_time'=>$entry->entry_time);
+                        $passInfo['entry_time']= explode(" ", $passInfo['entry_time'])[0];
+                        if($branch!="All" && $passInfo['branch']==$branch)
+                        {   
+                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_time'] . "</td></tr>";
+                            $serial++;
+                        }
+                        if($branch=="All")
+                        {
+                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_time'] . "</td></tr>";
+                            $serial++;   
+                        }
+                    }
+                    ?>
+					
 					</tbody>
 				</table>
 			</div>	

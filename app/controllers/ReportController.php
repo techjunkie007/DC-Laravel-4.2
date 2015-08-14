@@ -18,130 +18,29 @@ class ReportController extends BaseController {
 
 	}
 
-	//
-	function generate_report(){
-		
-		
-
-		 	$fromDate=$_POST['reportFromDate'];
-		 	$toDate=$_POST['reportToDate'];
-		 	$branch=$_POST['branch'];
-		 	
-		 	if($branch =='0'){
-		 	$entries= Students::latest('entry_time')->where('entry_time', '<=', $toDate)
-		 											->where('entry_time', '>=', $fromDate)
-		 											->get();
-		 	}
-		 	else{
-		 		
-		 		switch ($branch) {
-		 			case 1:
-		 				$branch="CS";
-		 				break;
-		 			case 2:
-		 				$branch="IT";
-		 				break;
-		 			case 3:
-		 				$branch="EC";
-		 				break;
-		 			case 4:
-		 				$branch="EN";
-		 				break;
-		 			case 5:
-		 				$branch="EI";
-		 				break;
-		 			case 6:
-		 				$branch="CE";
-		 				break;
-		 			case 7:
-		 				$branch="ME";
-		 				break;
-		 			case 8:
-		 				$branch="MCA";
-		 				break;
-		 			case 9:
-		 				$branch="MBA";
-		 				break;
-		 			}
-
-		 		$entries= Students::latest('entry_time')->where('entry_time', '<=', $toDate)
-		 											->where('entry_time', '>=', $fromDate)
-		 											->get();
-		 	}
-		 	
-		 	return View::make('range_report')->with('entries',$entries)
-		 	->with('branch',$branch)
-		 	->with('fromDate',$fromDate)
-		 	->with('toDate',$toDate);
-		 	
-
-		 
-
-		 
-		
-	}
+	
 	function daily_report_menu(){
 
 		return View::make('daily_report');
 
 	}
-	function daily_report(){
 
-		 	$date=$_POST['reportDate'];
-		 	
-		 	$branch=$_POST['branch'];
+	//Generate Daily Report
+	function generate_daily_report()
+	{
 
-		 	if($branch =='0'){
-		 	$entries= Students::latest('entry_time')->where('entry_time', '=', $date)
+		$report_date= Input::get('reportDate');
+		$branch_id= Input::get('branch');
+		$branch_char = $this->specify_branch($branch_id);
+
+		// Retrieve All Entries
+		$entries= Students::latest('entry_time')->where('entry_time', '=', $report_date)
 		 											->get();
-		 	}
-		 	else{
-		 		
-		 		switch ($branch) {
-		 			case 1:
-		 				$branch="CS";
-		 				break;
-		 			case 2:
-		 				$branch="IT";
-		 				break;
-		 			case 3:
-		 				$branch="EC";
-		 				break;
-		 			case 4:
-		 				$branch="EN";
-		 				break;
-		 			case 5:
-		 				$branch="EI";
-		 				break;
-		 			case 6:
-		 				$branch="CE";
-		 				break;
-		 			case 7:
-		 				$branch="ME";
-		 				break;
-		 			case 8:
-		 				$branch="MCA";
-		 				break;
-		 			case 9:
-		 				$branch="MBA";
-		 				break;
-		 			
-		 			
-		 		}
-
-		 		$entries= Students::latest('entry_time')->where('entry_time', '=', $date)
-		 											->get();
-		 		}
-		 	
-		 	
-		 	return View::make('daily_report')
-		 	->with('entries',$entries)
-		 	->with('branch',$branch)
-		 	->with('date',$date);
-		 	
-
-
-
+		
+		return View::make('daily_report')
+		 			->with('entries',$entries)
+		 			->with('branch',$branch_char)
+		 			->with('date',$report_date);
 	}
 
 	//Generate Three Entry Report
@@ -174,7 +73,7 @@ class ReportController extends BaseController {
 		$entries= DB::table('Students')->select('student_id','entry_time')
 										->where('entry_time', '>=', $from_date)
 									   ->where('entry_time', '<=', $to_date)->get();
-
+		//Return View Range Report
 		return View::make('range_report')->with('entries', $entries)
 										 ->with('branch', $branch_char)
 										 ->with('from_date', $from_date)
@@ -182,6 +81,7 @@ class ReportController extends BaseController {
 
 	}
 
+	//Specifies Branch Name from Branch ID
 	function specify_branch($branch_id)
 	{
 		$branch_char='';

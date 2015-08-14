@@ -49,6 +49,9 @@ Route::post('three-entry-report', array('uses'=>'ReportController@generate_three
 //Range Report Route
 Route::post('range-report', array('uses'=>'ReportController@generate_range_report'));
 
+//Daily Report Route
+Route::post('daily-report', array('uses'=>'ReportController@generate_daily_report'));
+
 //Download Report Route
 Route::post('download', array('uses'=>'ReportController@download_report'));
 
