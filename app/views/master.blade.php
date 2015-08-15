@@ -29,6 +29,13 @@
 	{{ HTML::script('js/flipclock.js') }}
 	<!-- Bootstrap.min JS -->
 	{{ HTML::script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js') }}
+    <!-- Shake Script -->
+    {{ HTML::script('js/jquery.ui.shake.js')}}
+    
+    <!--Yield Validation Scripts -->
+    <script>
+    @yield('validations')
+    </script>
 
 </head>
 <body>
