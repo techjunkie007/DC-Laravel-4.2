@@ -58,7 +58,7 @@ class ReportController extends BaseController {
 		//Retrieve Entries from Counters Table
 		$entries = DB::table('Counters')->where('temp_counter', '3')->get();
 		//Report Download View
-		return View::make('generated_three_entry_report')->with('entries',$entrzies);
+		return View::make('generated_three_entry_report')->with('entries',$entries);
 	}
 
 	//Generate Range Report
