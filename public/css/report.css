@@ -6,6 +6,12 @@
 
 .overflo
 {
-	overflow-y: scroll;
+	overflow: hidden;
 	height: 60%;
+}
+
+
+.overflo:hover
+{
+	overflow: scroll;
 }

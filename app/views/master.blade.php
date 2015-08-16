@@ -21,6 +21,9 @@
 	{{ HTML::style('css/register.css') }}
 	<!-- New Entry CSS -->
 	{{ HTML::style('css/new_entry.css') }}
+    <!-- Report CSS -->
+    {{ HTML::style('css/report.css') }}
+
 
 	<!-- Scripts -->            
 	<!-- JQuery -->
