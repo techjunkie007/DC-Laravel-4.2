@@ -61,6 +61,13 @@ Route::post('daily-report', array('uses'=>'ReportController@generate_daily_repor
 //Download Report Route
 Route::post('download', array('uses'=>'ReportController@download_report'));
 
+//Logout Route
+Route::post('logout', array('as'=>'logout_submit', 'uses'=>'LoginController@logout'));
+
+//Datewise Again Entry Route
+Route::get('datewise_again', function(){
+	return View::make('datewise');
+});
 
 
 
@@ -76,7 +83,7 @@ Route::post('download', array('uses'=>'ReportController@download_report'));
 //Route::post('datewise', array('as' => 'date_submit', 'uses' => 'DashboardController@datewise_entry'));
 //Route::get('datewise', 'DashboardController@datewise_entry');
 //Logout Submit Route
-Route::post('logout', array('as' => 'logout_submit', 'uses' => 'LoginController@logout'));
+//Route::post('logout', array('as' => 'logout_submit', 'uses' => 'LoginController@logout'));
 //Student Info Submit Route
 //Route::post('dashboard', array('as' => 'dashboard_info', 'uses' => 'DashboardController@store'));
 //Register Entry Route

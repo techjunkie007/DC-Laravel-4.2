@@ -5,7 +5,6 @@ class LoginController extends BaseController {
 	//Login View Return
 	function login()
 	{
-		//Flush Session if exists
 		Session::flush();
 		return View::make('login');
 	}
@@ -13,8 +12,6 @@ class LoginController extends BaseController {
 	//Authenticating
 	function proceed()
 	{
-		//Flush Session if exists
-		Session::flush();
 		$credentials = array('username'=>Input::get('username'),
 							'password'=>Input::get('password'));
 

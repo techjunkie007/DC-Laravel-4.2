@@ -112,9 +112,10 @@ class DashboardController extends BaseController
 			$message= "Late Entry for Student Number ". $student_no. ", on Date ". $entry_date." successfully registered.";
 
 			//Redirect to Datewise Dashboard for more Datewise Entries
-			return Redirect::to('datewise-dashboard')->with('message', $message);
+			return Redirect::to('datewise_again')->with('message', $message);
+
 		}
-		//Else if it is a Normal Entry (Today's)
+		//Else if it is a Normal Entry
 		else
 		{
 			//Today's Date
@@ -191,7 +192,7 @@ class DashboardController extends BaseController
 
 		$message= "We are back to Today, Enter today's Late Entry";
 		
-		//Redirect to Dashboard after all datewise Entries
+		//Redirect to Dashboard after all datewise entries
 		return Redirect::to('dashboard')->with('message', $message);
 	}
 }

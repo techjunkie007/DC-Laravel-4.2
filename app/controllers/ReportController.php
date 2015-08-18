@@ -18,13 +18,6 @@ class ReportController extends BaseController {
 
 	}
 
-	
-	function daily_report_menu(){
-
-		return View::make('daily_report');
-
-	}
-
 	//Generate Daily Report
 	function generate_daily_report()
 	{
