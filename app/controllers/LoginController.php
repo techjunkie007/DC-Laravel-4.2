@@ -5,7 +5,7 @@ class LoginController extends BaseController {
 	//Login View Return
 	function login()
 	{
-		Session::flush();
+		//Session::flush();
 		return View::make('login');
 	}
 
@@ -23,7 +23,7 @@ class LoginController extends BaseController {
 		else
 		{	
 			//Not Authenticated
-			return "Not authenticated";
+			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
 		}
 	}
 
