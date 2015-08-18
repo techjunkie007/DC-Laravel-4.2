@@ -58,6 +58,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h3>Enter Particulars</h3>
             </div>
             <!-- Add New Student Form Open -->

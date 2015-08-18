@@ -49,6 +49,7 @@
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <center><h3>Range Report Panel</h3></center>
                 </div>
                 <!-- Generate Report Form Open -->
