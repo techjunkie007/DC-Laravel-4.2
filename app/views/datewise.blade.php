@@ -4,6 +4,18 @@
 <!-- Yield Page Header Title-->
 @section('title', 'Late Entry | Datewise')
 
+<!-- Yield Back Button -->
+@section('back_button')
+    {{Form::open(['url' => 'dashboard'])}}
+    <div>
+        <button class="btn btn-default col-md-1 col-sm-1 col-md-offset-1 col-sm-offset-1 logout">
+            <span class="glyphicon glyphicon-hand-left glyph_pad" aria-hidden="true"></span>
+            <span> Back to Today</span>
+        </button>
+        {{Form::close()}}
+    </div>
+@endsection
+
 <!-- Yield Logout Button -->
 @section('logout_button')
 

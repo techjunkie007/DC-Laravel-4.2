@@ -22,14 +22,20 @@ Route::get('login', array('uses'=>'LoginController@login'));
 //Login Submit Credentials Route
 Route::post('login', array('uses'=>'LoginController@proceed'));
 
-//Login Page Route
+//Dashboard Page GET Route
 Route::get('dashboard', array('uses'=>'DashboardController@show_menu'));
+
+//Dashboard Page POST Route
+Route::post('dashboard', array('uses'=>'DashboardController@back_button'));
 
 //Student Info Page
 Route::post('student', array('uses'=>'DashboardController@show_student'));
 
 //Datewise Dashboard Route
 Route::post('datewise-dashboard', array('uses'=>'DashboardController@datewise_entry'));
+
+//Datewise Dashboard Route
+Route::get('datewise-dashboard', array('uses'=>'DashboardController@datewise_entry'));
 
 //Datewise Register Entry Click Route
 Route::post('datewise-register', array('uses'=>'DashboardController@save_entry'));

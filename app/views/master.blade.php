@@ -56,6 +56,10 @@
             <!-- Yield Print Button -->
             
             @yield('print_button')
+
+            <!-- Yield Back Button -->
+            
+            @yield('back_button')
             
 			<!-- Logout Button -->
 			{{ Form::open(['route' => 'logout_submit']) }}
