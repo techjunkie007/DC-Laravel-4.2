@@ -96,29 +96,42 @@ class DashboardController extends BaseController
 	{
 		//Get Student ID
 		$student_no= Session::get('student_no');
+		//Check if Datewise Entry is going on
 		if (Session::has('entry_date')) 
 		{
 			//Get Entry Date, if Datewise
 			$entry_date= Session::get('entry_date');
-			Session::forget('entry_date');
+
+			//Forget Student Number from Session
+			Session::forget('student_no');
+			
+			//Call Function to Populate Database
+			$this->save_in_db($student_no, $entry_date);
+
+			//Flash Message
+			$message= "Late Entry for Student Number ". $student_no. ", on Date ". $entry_date." successfully registered.";
+
+			//Redirect to Datewise Dashboard for more Datewise Entries
+			return Redirect::to('datewise-dashboard')->with('message', $message);
 		}
+		//Else if it is a Normal Entry (Today's)
 		else
 		{
 			//Today's Date
 			$entry_date= date("Y-m-d");
+
+			//Call Function to Populate Database
+			$this->save_in_db($student_no, $entry_date);
+
+			//Forget Student Number from Session
+			Session::forget('student_no');
+
+			//Flash Message
+			$message= "Today's Late Entry for Student Number ". $student_no. " successfully registered.";
+
+			//Redirect to Dashboard for Today's Entry
+			return Redirect::to('dashboard')->with('message', $message);
 		}
-
-		//Forget Student Number from Session
-		Session::forget('student_no');
-
-		//Call Function to Populate Database
-		$this->save_in_db($student_no, $entry_date);
-
-		//Flash Message
-		$message= "Late Entry for Student Number ". $student_no. ", on Date ". $entry_date." successfully registered.";
-
-		//Redirect to Dashboard
-		return Redirect::to('dashboard')->with('message', $message);
 	}
 
 	//Common Function to Update Database
@@ -167,6 +180,18 @@ class DashboardController extends BaseController
 		//Add Student to Database
 		DB::table('Students_infos')->insert(['student_id' => $student_no,'student_name' => Input::get('studentName'), 'year' => Input::get('studentYear'), 'branch' => Input::get('studentBranch') ]);
 		$message= "New Student with Student Number ". $student_no. " added to Database.";
+		return Redirect::to('dashboard')->with('message', $message);
+	}
+
+	//Back Button 
+	function back_button()
+	{	
+		//Forget Student Number from Session
+		Session::forget('entry_date');
+
+		$message= "We are back to Today, Enter today's Late Entry";
+		
+		//Redirect to Dashboard after all datewise Entries
 		return Redirect::to('dashboard')->with('message', $message);
 	}
 }
