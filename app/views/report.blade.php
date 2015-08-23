@@ -4,6 +4,26 @@
 <!-- Yield Page Header Title-->
 @section('title', 'Late Entry | Daily Report')
 
+<!-- Yield Validations -->
+@section('validations')
+
+function validateReportDates() 
+{
+    var from = document.getElementById('reportFromDate');
+    var to = document.getElementById('reportToDate');
+    if( from.value == "" || from.value== null || to.value== "" || to.value== null)
+    {
+        alert("Date Fields can't be empty");
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+@endsection
+
 <!-- Yield Logout Button -->
 @section('logout_button')
 
@@ -61,7 +81,7 @@
                         <div class="form-group">
                             <div class='input-group date' id='datetimepicker9'>
                                 <!-- From Date Field -->
-                                {{ Form::input('date', 'reportFromDate', null, ['class' => 'form-control']) }}
+                                {{ Form::input('date', 'reportFromDate', null, ['id' => 'reportFromDate', 'class' => 'form-control']) }}
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar">
                                     </span>
@@ -74,7 +94,7 @@
                         <div class="form-group">
                             <div class='input-group date' id='datetimepicker9'>
                             <!-- To Date Field -->
-                            {{ Form::input('date', 'reportToDate', null, ['class' => 'form-control']) }}
+                            {{ Form::input('date', 'reportToDate', null, ['id' => 'reportToDate', 'class' => 'form-control']) }}
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar">
                                     </span>
@@ -91,7 +111,7 @@
                 <!-- Modal Footer -->
                 <div class="modal-footer">
                     <!-- Get Range Report Submit Button -->
-                    {{Form::submit('Get Range Report', array('class' => 'btn btn-warning', 'id' => 'report_Button')  ) }}
+                    {{Form::submit('Get Range Report', array('onClick' => 'return validateReportDates()', 'class' => 'btn btn-warning', 'id' => 'report_Button')  ) }}
                 </div>
             </div>
         </div>
