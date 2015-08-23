@@ -34,6 +34,7 @@
     <div class="container block">
         <div class="row Heading">
             <h2 class="cl-md-offset-1 tb"> Students with 3 Late Entries </h2>
+            @if( $entries )
             <div class="overflo">
                 <table class="table">
                     <thead>
@@ -65,7 +66,12 @@
             ?>
                     </tbody>
                 </table>
-            </div>  
+            </div> 
+            @else 
+            <div class="alert alert-danger" role="alert">
+                No Entries Found in Database
+            </div>
+            @endif
         </div>
     </div>
 

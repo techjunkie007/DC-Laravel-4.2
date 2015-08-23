@@ -5,7 +5,8 @@ class LoginController extends BaseController {
 	//Login View Return
 	function login()
 	{
-		//Session::flush();
+		Session::forget('entry_date');
+		Session::forget('student_no');
 		return View::make('login');
 	}
 

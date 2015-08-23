@@ -24,6 +24,7 @@
     <div class="container block">
         <div class="row Heading">
             <h2 class="cl-md-offset-1 tb">Late Comers from {{$from_date}} to {{$to_date}} of {{$branch}} Branch(es):</h2>
+            @if ( $entries )
             <div class="overflo">
                 <!-- Table for Records -->
                 <table class="table">
@@ -63,7 +64,12 @@
                     ?>
                     </tbody>
                 </table>
-            </div>  
+            </div> 
+            @else
+            <div class="alert alert-danger" role="alert">
+                No Entries Found in Database
+            </div>
+            @endif 
         </div>
     </div>
 

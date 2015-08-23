@@ -16,6 +16,11 @@ function validateReportDates()
         alert("Date Fields can't be empty");
         return false;
     }
+    if( from.value > to.value)
+    {
+        alert("From Date should be less than To Date");
+        return false;
+    }
     else
     {
         return true;
