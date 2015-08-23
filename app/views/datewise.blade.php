@@ -4,6 +4,60 @@
 <!-- Yield Page Header Title-->
 @section('title', 'Late Entry | Datewise')
 
+<!-- Yield Validations -->
+@section('validations')
+
+function validateStudentForm() 
+{
+    var number = document.getElementById('studentNumber');
+    if( number.value == "" || number.value== null)
+    {
+        alert("Student Number Field can't be empty");
+        return false;
+    }
+    else if( isNaN(number.value) )
+    {   
+        alert("Student Number is supposed to be a number");
+        return false;
+    }
+    else if( number.value.length != '7')
+    {   
+        alert("Student Number should be of 7 digits");
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+function validateDateForm()
+{
+    var date = document.getElementById('entryDate');
+    if( date.value == "" || date.value== null)
+    {
+        alert("Date Field can't be empty");
+        return false;
+    }
+
+}
+
+function validateReportDate()
+{
+    var reportDate = document.getElementById('reportDate');
+    if( reportDate.value == "" || reportDate.value== null)
+    {
+        alert("Date for Daily Report Field can't be empty");
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+@endsection
+
 <!-- Yield Back Button -->
 @section('back_button')
     {{Form::open(['url' => 'dashboard'])}}
@@ -48,10 +102,10 @@
         <div class="col-md-6 col-md-offset-3 fhieght">
             <div class="input-group">
                 <!-- Student Number Entry -->
-                {{ Form::text('studentNumber', null , array('class' => 'form-control', 'placeholder' => 'Enter the Student Number' ) ) }}
+                {{ Form::text('studentNumber', null , array('id'=>'studentNumber' ,'class' => 'form-control', 'placeholder' => 'Enter the Student Number' ) ) }}
                 <span class="input-group-btn">
                     <!-- Submit Button -->
-                    {{ Form::submit('Search', array('class' => 'btn btn-warning', 'id' => 'submitButton')  ) }}
+                    {{ Form::submit('Search', array('onClick'=>'return validateStudentForm()' ,'class' => 'btn btn-warning', 'id' => 'submitButton')  ) }}
                 </span>
             </div>
         </div>
@@ -74,10 +128,10 @@
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker10'>
                     <!-- New Date Entry -->
-                    {{ Form::input('date', 'entryDate', null, ['class' => 'form-control']) }}
+                    {{ Form::input('date', 'entryDate', null, ['id'=>'entryDate' ,'class' => 'form-control']) }}
                     <span class="input-group-btn">
                         <!-- Simlate Again Button -->
-                        {{ Form::submit('Simulate Again', array('class' => 'btn btn-warning', 'id' => 'datewiseEntry'))}}
+                        {{ Form::submit('Simulate Again', array('onClick'=>'return validateDateForm()' ,'class' => 'btn btn-warning', 'id' => 'datewiseEntry'))}}
                     </span>
                 </div>
             </div>  
@@ -128,7 +182,7 @@
                         <div class="form-group">
                             <div class='input-group date' id='datetimepicker9'>
                             <!-- Date Input -->
-                            {{ Form::input('date', 'reportDate', date('Y-m-d'), ['class' => 'form-control']) }}
+                            {{ Form::input('date', 'reportDate', date('Y-m-d'), ['id'=>'reportDate' ,'class' => 'form-control']) }}
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar">
                                 </span>
@@ -146,7 +200,7 @@
                 <!-- Modal Footer -->
                 <div class="modal-footer">
                 <!-- Get DAily Report Button -->
-                {{Form::submit('Get Daily Report', array('class' => 'btn btn-warning', 'id' => 'report_Button')  ) }}
+                {{Form::submit('Get Daily Report', array('onClick'=>'return validateReportDate()' ,'class' => 'btn btn-warning', 'id' => 'report_Button')  ) }}
                 </div>
             </div>
         </div>

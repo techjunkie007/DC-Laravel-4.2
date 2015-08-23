@@ -36,7 +36,7 @@
     {{ HTML::script('js/jquery.ui.shake.js')}}
     
     <!--Yield Validation Scripts -->
-    <script>
+    <script type ='text/javascript'>
     @yield('validations')
     </script>
 
