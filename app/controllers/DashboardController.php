@@ -22,48 +22,55 @@ class DashboardController extends BaseController
 	//Show Student Information
 	function show_student()
 	{
-		$student_no= Input::get('studentNumber');
-
-		//Store Student Number in Session
-		Session::put('student_no', $student_no);
-		
-		$previousEntry= $this->check_for_entries($student_no);
-
-		//$entries= DB::table('Students')->where('student_id', $student_no)->get();
-		
-		$info = DB::table('Students_infos')->where('student_id', $student_no)->first();
-
-		//Checking if Student Exists
-		if (!$info) 
+		if (Auth::check())
 		{
-			//View New Entry of Student
-			return View::make('new_entry');
-		}
+			$student_no= Input::get('studentNumber');
 
-		//Checking if it is a Datewise Entry
-		if (Session::has('entry_date'))
-		{
-			//Datewise Entry View
-			return View::make('datewise_entry')->with('info', $info)
+			//Store Student Number in Session
+			Session::put('student_no', $student_no);
+		
+			$previousEntry= $this->check_for_entries($student_no);
+
+			//$entries= DB::table('Students')->where('student_id', $student_no)->get();
+		
+			$info = DB::table('Students_infos')->where('student_id', $student_no)->first();
+
+			//Checking if Student Exists
+			if (!$info) 
+			{
+				//View New Entry of Student
+				return View::make('new_entry');
+			}
+
+			//Checking if it is a Datewise Entry
+			if (Session::has('entry_date'))
+			{
+				//Datewise Entry View
+				return View::make('datewise_entry')->with('info', $info)
 											->with('counter', $previousEntry);
+			}
+			else
+			{
+				//Student was Late Earlier
+				if ($previousEntry>0) 
+				{
+					//Next Entry View
+					return View::make('next_entry')->with('info', $info)
+												->with('counter', $previousEntry);
+				}	
+				//Student's First Late Entry
+				elseif ($previousEntry==0) 
+				{
+					//First Entry View
+					return View::make('first_entry')->with('info', $info);
+				
+				}
+			}
 		}
 		else
 		{
-			//Student was Late Earlier
-			if ($previousEntry>0) 
-			{
-				//Next Entry View
-				return View::make('next_entry')->with('info', $info)
-												->with('counter', $previousEntry);
-			}
-			//Student's First Late Entry
-			elseif ($previousEntry==0) 
-			{
-				//First Entry View
-				return View::make('first_entry')->with('info', $info);
-				
-			}
-
+			//Login Again with Message
+			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
 
 		}
 	}
@@ -80,13 +87,22 @@ class DashboardController extends BaseController
 	//Datewise Entry 
 	function datewise_entry()
 	{
-		$entry_date= Input::get('entryDate');
+		if(Auth::check())
+		{
+			$entry_date= Input::get('entryDate');
 		
-		//Put Entry Date in Session for further use
-		Session::put('entry_date', $entry_date);
+			//Put Entry Date in Session for further use
+			Session::put('entry_date', $entry_date);
 
-		//Datewise Dashboard View
-		return View::make('datewise');		
+			//Datewise Dashboard View
+			return View::make('datewise');
+		}
+		else
+		{
+			//Login Again with Message
+			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
+
+		}
 
 	}
 	
@@ -94,44 +110,51 @@ class DashboardController extends BaseController
 	//Saves Late Entry
 	function save_entry()
 	{
-		//Get Student ID
-		$student_no= Session::get('student_no');
-		//Check if Datewise Entry is going on
-		if (Session::has('entry_date')) 
+		if(Auth::check())
 		{
-			//Get Entry Date, if Datewise
-			$entry_date= Session::get('entry_date');
+			//Get Student ID
+			$student_no= Session::get('student_no');
+			//Check if Datewise Entry is going on
+			if (Session::has('entry_date')) 
+			{
+				//Get Entry Date, if Datewise
+				$entry_date= Session::get('entry_date');
 
-			//Forget Student Number from Session
-			Session::forget('student_no');
+				//Forget Student Number from Session
+				Session::forget('student_no');
 			
-			//Call Function to Populate Database
-			$this->save_in_db($student_no, $entry_date);
+				//Call Function to Populate Database
+				$this->save_in_db($student_no, $entry_date);
 
-			//Flash Message
-			$message= "Late Entry for Student Number ". $student_no. ", on Date ". $entry_date." successfully registered.";
+				//Flash Message
+				$message= "Late Entry for Student Number ". $student_no. ", on Date ". $entry_date." successfully registered.";
 
-			//Redirect to Datewise Dashboard for more Datewise Entries
-			return Redirect::to('datewise_again')->with('message', $message);
+				//Redirect to Datewise Dashboard for more Datewise Entries
+				return Redirect::to('datewise_again')->with('message', $message);
+			}
+			//Else if it is a Normal Entry
+			else
+			{
+				//Today's Date
+				$entry_date= date("Y-m-d");
 
+				//Call Function to Populate Database
+				$this->save_in_db($student_no, $entry_date);
+
+				//Forget Student Number from Session
+				Session::forget('student_no');
+
+				//Flash Message
+				$message= "Today's Late Entry for Student Number ". $student_no. " successfully registered.";
+
+				//Redirect to Dashboard for Today's Entry
+				return Redirect::to('dashboard')->with('message', $message);
+			}
 		}
-		//Else if it is a Normal Entry
 		else
 		{
-			//Today's Date
-			$entry_date= date("Y-m-d");
-
-			//Call Function to Populate Database
-			$this->save_in_db($student_no, $entry_date);
-
-			//Forget Student Number from Session
-			Session::forget('student_no');
-
-			//Flash Message
-			$message= "Today's Late Entry for Student Number ". $student_no. " successfully registered.";
-
-			//Redirect to Dashboard for Today's Entry
-			return Redirect::to('dashboard')->with('message', $message);
+			//Login Again with Message
+			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
 		}
 	}
 
@@ -177,23 +200,40 @@ class DashboardController extends BaseController
 	//Add New Student
 	function add_student()
 	{
-		$student_no=Input::get('studentNumber');
-		//Add Student to Database
-		DB::table('Students_infos')->insert(['student_id' => $student_no,'student_name' => Input::get('studentName'), 'year' => Input::get('studentYear'), 'branch' => Input::get('studentBranch') ]);
-		$message= "New Student with Student Number ". $student_no. " added to Database.";
-		return Redirect::to('dashboard')->with('message', $message);
+		if(Auth::check())
+		{
+			$student_no=Input::get('studentNumber');
+			//Add Student to Database
+			DB::table('Students_infos')->insert(['student_id' => $student_no,'student_name' => Input::get('studentName'), 'year' => Input::get('studentYear'), 'branch' => Input::get('studentBranch') ]);
+			$message= "New Student with Student Number ". $student_no. " added to Database.";
+			return Redirect::to('dashboard')->with('message', $message);
+		}
+		else
+		{
+			//Login Again with Message
+			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
+		}
 	}
 
 	//Back Button 
 	function back_button()
 	{	
-		//Forget Student Number from Session
-		Session::forget('entry_date');
+		if(Auth::check())
+		{
+			//Forget Student Number from Session
+			Session::forget('entry_date');
 
-		$message= "We are back to Today, Enter today's Late Entry";
+			$message= "We are back to Today, Enter today's Late Entry";
 		
-		//Redirect to Dashboard after all datewise entries
-		return Redirect::to('dashboard')->with('message', $message);
+			//Redirect to Dashboard after all datewise entries
+			return Redirect::to('dashboard')->with('message', $message);
+		}
+		else
+		{
+			//Login Again with Message
+			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
+
+		}
 	}
 }
 

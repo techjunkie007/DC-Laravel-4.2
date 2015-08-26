@@ -21,56 +21,88 @@ class ReportController extends BaseController {
 	//Generate Daily Report
 	function generate_daily_report()
 	{
+		if(Auth::check())
+		{
 
-		$report_date= Input::get('reportDate');
-		$branch_id= Input::get('branch');
-		$branch_char = $this->specify_branch($branch_id);
+			$report_date= Input::get('reportDate');
+			$branch_id= Input::get('branch');
+			$branch_char = $this->specify_branch($branch_id);
 
-		// Retrieve All Entries
-		$entries= Students::latest('entry_time')->where('entry_time', '=', $report_date)
+			// Retrieve All Entries
+			$entries= Students::latest('entry_time')->where('entry_time', '=', $report_date)
 		 											->get();
 		
-		return View::make('daily_report')
+			return View::make('daily_report')
 		 			->with('entries',$entries)
 		 			->with('branch',$branch_char)
 		 			->with('date',$report_date);
+		}
+		else
+		{
+			//Login Again with Message
+			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
+		}
 	}
 
 	//Generate Three Entry Report
 	function generate_three_entry_report()
 	{
-		//Retrieve Entries from Counters Table
-		$entries = DB::table('Counters')->where('temp_counter', '3')->get();
-		//Three Report View 
-		return View::make('three_entry_report')->with('entries',$entries);
+		if(Auth::check())
+		{
+			//Retrieve Entries from Counters Table
+			$entries = DB::table('Counters')->where('temp_counter', '3')->get();
+			//Three Report View 
+			return View::make('three_entry_report')->with('entries',$entries);
+		}
+		else
+		{
+			//Login Again with Message
+			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
+		}
 	}
 
 	//Download the Word Document of Report
 	function download_report()
 	{
-		//Retrieve Entries from Counters Table
-		$entries = DB::table('Counters')->where('temp_counter', '3')->get();
-		//Report Download View
-		return View::make('generated_three_entry_report')->with('entries',$entries);
+		if(Auth::check())
+		{
+			//Retrieve Entries from Counters Table
+			$entries = DB::table('Counters')->where('temp_counter', '3')->get();
+			//Report Download View
+			return View::make('generated_three_entry_report')->with('entries',$entries);
+		}
+		else
+		{
+			//Login Again with Message
+			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
+		}
 	}
 
 	//Generate Range Report
 	function generate_range_report()
 	{
-		$from_date =Input::get('reportFromDate');
-		$to_date =Input::get('reportToDate');
-		$branch=Input::get('branch');
-		//Specify Branch
-		$branch_char= $this->specify_branch($branch);
-		//Retrieve Entries from Students
-		$entries= DB::table('Students')->select('student_id','entry_time')
+		if(Auth::check())
+		{
+			$from_date =Input::get('reportFromDate');
+			$to_date =Input::get('reportToDate');
+			$branch=Input::get('branch');
+			//Specify Branch
+			$branch_char= $this->specify_branch($branch);
+			//Retrieve Entries from Students
+			$entries= DB::table('Students')->select('student_id','entry_time')
 										->where('entry_time', '>=', $from_date)
 									   ->where('entry_time', '<=', $to_date)->get();
-		//Return View Range Report
-		return View::make('range_report')->with('entries', $entries)
+			//Return View Range Report
+			return View::make('range_report')->with('entries', $entries)
 										 ->with('branch', $branch_char)
 										 ->with('from_date', $from_date)
 										 ->with('to_date', $to_date);								
+		}
+		else
+		{
+			//Login Again with Message
+			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
+		}
 
 	}
 

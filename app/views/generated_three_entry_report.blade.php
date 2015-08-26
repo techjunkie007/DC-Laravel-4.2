@@ -12,7 +12,7 @@ header("Content-Disposition: attachment;Filename=.doc");
                 <div class="row Heading">
                     <h2 class="cl-md-offset-1 tb">Late Comers With 3 Late Entries at Present</h2>
                     <div class="overflo">
-                        <table class="table">
+                        <table class="table" border="2">
                             <thead>
                                 <td><h4>S.No.</h4></td>
                                 <td><h4>Student No.</h4></td>

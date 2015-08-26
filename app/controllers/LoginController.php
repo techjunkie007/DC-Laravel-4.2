@@ -19,12 +19,12 @@ class LoginController extends BaseController {
 		if(Auth::attempt($credentials))
 		{	
 			//Dashboard
-			return Redirect::to('dashboard');
+			return Redirect::intended('dashboard');
 		}
 		else
 		{	
 			//Not Authenticated
-			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
+			return Redirect::to('login')->with('message','Invalid Credentials, Login Again');
 		}
 	}
 
@@ -32,7 +32,7 @@ class LoginController extends BaseController {
 	function logout()
 	{	
 		//Flush Session
-		//Session::flush();
+		Session::flush();
 	 	//Auth Logout
 	 	Auth::logout();
 	 	//Redirect to
