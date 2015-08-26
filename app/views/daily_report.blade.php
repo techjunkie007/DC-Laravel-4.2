@@ -7,8 +7,6 @@
 <!-- Yield Logout Button -->
 @section('logout_button')
 
-	<!-- Logout Form Open -->
-    {{ Form::open(['route' => 'logout_submit']) }}
     <!-- Logout Button -->
     <button class="btn btn-default col-md-1 col-sm-1 logout">
     <span class="glyphicon glyphicon-off" aria-hidden="true">
