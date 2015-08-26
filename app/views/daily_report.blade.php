@@ -45,6 +45,7 @@
 
 					<?php
                     $serial=1;
+                    $emptyFlag= false;
                     foreach ($entries as $entry) 
                     {
                         $info = DB::table('Students_infos')->where('student_id', $entry->student_id)->first();
@@ -56,20 +57,27 @@
                         $passInfo['entry_time']= explode(" ", $passInfo['entry_time'])[0];
                         if($branch!="All" && $passInfo['branch']==$branch)
                         {   
+                            $emptyFlag= true;
                             echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_time'] . "</td></tr>";
                             $serial++;
                         }
                         if($branch=="All")
                         {
+                            $emptyFlag=true;
                             echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_time'] . "</td></tr>";
                             $serial++;   
                         }
+                    }
+                    if ($emptyFlag== false) 
+                    {
+                        echo "<div class=\"alert alert-danger\" role=\"alert\">No Entries Found in Database</div>";
                     }
                     ?>
 					
 					</tbody>
 				</table>
-			</div>	
+			</div>
+            
 		</div>
 	</div>
 

@@ -32,7 +32,7 @@ class LoginController extends BaseController {
 	function logout()
 	{	
 		//Flush Session
-		Session::flush();
+		//Session::flush();
 	 	//Auth Logout
 	 	Auth::logout();
 	 	//Redirect to
