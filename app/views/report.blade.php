@@ -56,7 +56,7 @@ function validateReportDates()
             {{Form::close() }}
             <!-- Range Report Button Triggered Modal -->
             <a class="anchor" href="#modal1" data-toggle="modal" style="text-decoration:none;"> 
-            <button class="btn btn-default generate" >
+            <button class="btn btn-default btn-primary-bg generate" >
                 <h3>Range Report Generation</h3>
             </button>
             </a>                    

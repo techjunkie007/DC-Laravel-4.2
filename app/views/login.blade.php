@@ -40,7 +40,7 @@ function validateForm()
     <div class="wrapper row block">
         <div class="adminstrationLogin col-md-4 col-md-offset-4 col-sm-offset-3 col-sm-6">
             <div class="admLogin">
-                <h3 class="text-center">Adminstration Login</h3>
+                <h3 class="text-center">Administration Login</h3>
             </div>
             <div class="content1 row">
                 <!-- Login Form Open-->
@@ -67,7 +67,7 @@ function validateForm()
                     <!-- Login Button -->
                     <div class="button row">
                     <!-- Submit the Login Form -->
-                    {{ Form::submit('Login', array('onClick'=>'return validateForm()' ,'class' => 'btn btn-lg col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4 button1')  ) }}
+                    {{ Form::submit('Login', array('onClick'=>'return validateForm()' ,'class' => 'btn btn-lg col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4 button1 btnFix')  ) }}
                     </div>  
                     <!-- Login Form Close -->
                     {{ Form::close() }}

@@ -59,7 +59,7 @@ Route::post('range-report', array('uses'=>'ReportController@generate_range_repor
 Route::post('daily-report', array('uses'=>'ReportController@generate_daily_report'));
 
 //Download Report Route
-Route::post('download', array('uses'=>'ReportController@download_report'));
+Route::get('download', array('uses'=>'ReportController@download_report'));
 
 //Logout Route
 Route::post('logout', array('as'=>'logout_submit', 'uses'=>'LoginController@logout'));

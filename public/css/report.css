@@ -6,12 +6,6 @@
 
 .overflo
 {
-	overflow: hidden;
 	height: 60%;
-}
-
-
-.overflo:hover
-{
-	overflow: scroll;
+	overflow: auto;
 }

@@ -23,6 +23,11 @@
 	{{ HTML::style('css/new_entry.css') }}
     <!-- Report CSS -->
     {{ HTML::style('css/report.css') }}
+    <!-- fontawesome CDN -->
+    {{ HTML::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css') }}
+
+<!-- <link href='http://fonts.googleapis.com/css?family=Economica' rel='stylesheet' type='text/css'> -->
+    {{ HTML::style('http://fonts.googleapis.com/css?family=Economica') }}
 
 
 	<!-- Scripts -->            
@@ -49,17 +54,13 @@
 		<div class="header row">
             <!-- Empty -->
 			<div class="col-md-2 col-sm-1">
+                <!-- Home Button -->
+                <div class="home">
+                    <a href="dashboard"><span class="fa fa-home fa-3x"></span></a>
+                </div>
 			</div>
 			<!-- College Name Heading -->
 			<h1 class="text-center center col-md-7 col-sm-8">AKGEC LATE ENTRY SYSTEM</h1>
-
-            <!-- Yield Print Button -->
-            
-            @yield('print_button')
-
-            <!-- Yield Back Button -->
-            
-            @yield('back_button')
             
 			<!-- Logout Button -->
 			{{ Form::open(['route' => 'logout_submit']) }}
