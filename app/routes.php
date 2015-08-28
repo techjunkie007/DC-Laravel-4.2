@@ -59,7 +59,13 @@ Route::post('range-report', array('uses'=>'ReportController@generate_range_repor
 Route::post('daily-report', array('uses'=>'ReportController@generate_daily_report'));
 
 //Download Report Route
-Route::get('download', array('uses'=>'ReportController@download_report'));
+Route::get('download_three', array('uses'=>'ReportController@download_three_entry_report'));
+
+//Download Report Route
+Route::get('download_daily', array('uses'=>'ReportController@download_daily_report'));
+
+//Download Report Route
+Route::get('download_range', array('uses'=>'ReportController@download_range_report'));
 
 //Logout Route
 Route::post('logout', array('as'=>'logout_submit', 'uses'=>'LoginController@logout'));
@@ -119,6 +125,10 @@ Route::get('get', function()
     var_dump(Session::get('entry_date'));
     var_dump(Session::get('student_no'));
     var_dump(Session::get('entry_flag'));
+    var_dump(Session::get('daily_date'));
+    var_dump(Session::get('branch'));
+
+
 
 }
 );

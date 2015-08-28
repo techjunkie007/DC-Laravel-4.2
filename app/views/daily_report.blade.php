@@ -12,8 +12,6 @@
     <span class="glyphicon glyphicon-off" aria-hidden="true">
     </span>
     <span> Logout</span>
-    <!-- Logout Form Close -->
-    {{ Form::close() }}
 
 @endsection
 
@@ -24,7 +22,11 @@
 			@if($branch=='0')
 			<?php $branch="All" ?>
 			@endif
-			<h2 class="cl-md-offset-1 tb">Records Report of Date {{ $date}} for {{$branch}} Branch :</h2>
+			<h2 class="cl-md-offset-1 tb">Records Report of Date {{ $date}} for {{$branch}} Branch
+            <!-- Print Button -->    
+                <a href="download_daily" class="printBtn">
+                <span class=" printContainer fa fa-print"  align="right"></span></a> 
+            </h2>
 			<div class="overflo">
 				<!-- Table for Records -->
 				<table class="table">
@@ -36,7 +38,6 @@
 						<td><h4>Name</h4></td>
 						<td><h4>Branch</h4></td>
 						<td><h4>Year</h4></td>
-						<td><h4>Late Entries</h4></td>
 					</thead>
 					<!-- Table Body -->
 					<tbody>
@@ -50,25 +51,23 @@
                         $passInfo = array('student_id' =>$info->student_id ,
                                             'student_name'=>$info->student_name,
                                             'branch'=>$info->branch,
-                                            'year'=>$info->year,
-                                            'entry_time'=>$entry->entry_time);
-                        $passInfo['entry_time']= explode(" ", $passInfo['entry_time'])[0];
+                                            'year'=>$info->year);
                         if($branch!="All" && $passInfo['branch']==$branch)
                         {   
                             $emptyFlag= true;
-                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_time'] . "</td></tr>";
+                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td></tr>";
                             $serial++;
                         }
                         if($branch=="All")
                         {
                             $emptyFlag=true;
-                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_time'] . "</td></tr>";
+                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td></tr>";
                             $serial++;   
                         }
                     }
                     if ($emptyFlag== false) 
                     {
-                        echo "<div class=\"alert alert-danger\" role=\"alert\">No Entries Found in Database</div>";
+                        echo "<center><div class=\"alert alert-danger\" role=\"alert\">No Entries Found in Database</div></center>";
                     }
                     ?>
 					

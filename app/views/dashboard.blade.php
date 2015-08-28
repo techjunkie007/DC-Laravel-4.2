@@ -10,19 +10,16 @@
 function validateStudentForm() 
 {
     var number = document.getElementById('studentNumber');
+    var regex = /^\d{7}[D,d,M,m]{0,1}$/; 
     if( number.value == "" || number.value== null)
     {
         alert("Student Number Field can't be empty");
         return false;
     }
-    else if( isNaN(number.value) )
-    {   
-        alert("Student Number is supposed to be a number");
-        return false;
-    }
-    else if( number.value.length != '7')
-    {   
-        alert("Student Number should be of 7 digits");
+   
+    else if( !regex.exec(number.value) )
+    {
+        alert("Student number invalid");
         return false;
     }
     else

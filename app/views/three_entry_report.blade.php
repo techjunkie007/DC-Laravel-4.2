@@ -12,8 +12,6 @@
     <span class="glyphicon glyphicon-off" aria-hidden="true">
     </span>
     <span> Logout</span>
-    <!-- Logout Form Close -->
-    {{ Form::close() }}
 
 @endsection
 
@@ -21,9 +19,8 @@
     <div class="container block">
         <div class="row Heading">
             <h2 class="cl-md-offset-1 tb"> Students with 3 Late Entries 
-
                 <!-- Print Button -->    
-                <a href="download">
+                <a href="download_three" class="printBtn">
                 <span class=" printContainer fa fa-print"  align="right"></span></a> 
             </h2>
             @if( $entries )
