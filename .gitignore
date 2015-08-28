@@ -1,4 +1,4 @@
-/public/images/
+/public/images/*
 /bootstrap/compiled.php
 composer.phar
 composer.lock
