@@ -37,8 +37,12 @@ ul
 .thumbnail
 {
 	border:1px solid #222;
-		
 	margin: 2% 4% 0% 2%;
+}
+
+#image_student{
+	background-image:url('images/default.png');
+
 }
 
 .border
