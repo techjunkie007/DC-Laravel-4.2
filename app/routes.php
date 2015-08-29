@@ -76,7 +76,7 @@ Route::get('datewise_again', function(){
 
 
 
-
+//Debugging Purpose
 
 Route::get('get', function()
 {
@@ -91,11 +91,6 @@ Route::get('get', function()
 
 }
 );
-// Route::controllers([
-
-// 	'auth'=>'Auth\AuthController',
-// 	'password' => 'Auth\PasswordController',
-// 	]);
 
 
 

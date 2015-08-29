@@ -19,7 +19,7 @@
 
     <div class="container block">
         <div class="row Heading">
-            <h2 class="cl-md-offset-1 tb">Late Comers from {{$from_date}} to {{$to_date}} of {{$branch}} Branch(es)
+            <h2 class="cl-md-offset-1 tb">Late Comers from {{ date("d-M-Y",strtotime($from_date)) }} to {{ date("d-M-Y",strtotime($to_date)) }} of {{$branch}} Branch(es)
                 <!-- Print Button -->    
                 <a href="download_range" class="printBtn">
                 <span class=" printContainer fa fa-print"  align="right"></span></a> 
@@ -52,12 +52,12 @@
                         $passInfo['entry_time']= explode(" ", $passInfo['entry_time'])[0];
                         if($branch!="All" && $passInfo['branch']==$branch)
                         {   
-                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_time'] . "</td></tr>";
+                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . date("d-M-Y",strtotime($passInfo['entry_time'])). "</td></tr>";
                             $serial++;
                         }
                         if($branch=="All")
                         {
-                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_time'] . "</td></tr>";
+                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . date("d-M-Y",strtotime($passInfo['entry_time'])) . "</td></tr>";
                             $serial++;   
                         }
                     }

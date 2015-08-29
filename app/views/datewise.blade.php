@@ -97,7 +97,7 @@ function validateReportDate()
     <div class="or">
         SIMULATED DATE : 
         <strong>
-            {{ Session::get('entry_date') }}
+            {{ date("d-M-Y",strtotime(Session::get('entry_date'))) }}
         </strong>
         &nbsp  
         OR SIMULATE NEW DATE 
