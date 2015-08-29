@@ -78,7 +78,7 @@ function validateReportDate()
 <!-- Yield Mid-Content -->
 @section('mid_content')
     <!-- Datewise Form Open -->
-    {{ Form::open(['url' => 'student']) }}
+    {{ Form::open(['url' => 'student', 'method' => 'GET']) }}
     <div class="row">   
         <div class="col-md-6 col-md-offset-3 fhieght">
             <div class="input-group">
@@ -97,13 +97,13 @@ function validateReportDate()
     <div class="or">
         SIMULATED DATE : 
         <strong>
-            {{ Session::get('entry_date') }}
+            {{ date("d-M-Y",strtotime(Session::get('entry_date'))) }}
         </strong>
         &nbsp  
         OR SIMULATE NEW DATE 
     </div>
     <!-- New Date Simulation Form Open-->
-    {{  Form::open(['url' => 'datewise-dashboard']) }}
+    {{  Form::open(['url' => 'datewise-dashboard', 'method' => 'GET']) }}
     <div class="row fheight1">
         <div class="col-md-6 col-md-offset-3 bottom_pad" style="height:100px;">
             <div class="form-group">
@@ -132,7 +132,7 @@ function validateReportDate()
             </button>
         </a>
         <!-- Generate Report Form Open -->
-        {{  Form::open(['url' => 'report-panel']) }}
+        {{  Form::open(['url' => 'report-panel', 'method' => 'GET']) }}
         <div class="col-md-1 col-sm-1">
         </div>
         <!-- Generate Report Submit Button -->
@@ -154,7 +154,7 @@ function validateReportDate()
                      <center> <h3>Daily Records Panel</h3> </center>
                 </div>
                 <!-- Daily Report Form Open -->
-                {{  Form::open(['url' => 'daily-report']) }}
+                {{  Form::open(['url' => 'daily-report', 'method'=>'GET']) }}
                 <!-- Modal Body -->
                 <div class="modal-body">
                     <!-- Calendar -->

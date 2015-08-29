@@ -110,7 +110,7 @@
         </div>
         <!-- Footer -->
         <div class="footer row">
-            <h4 class="text-center">&copy;<strong>SOFTWARE INCUBATOR</strong></h4>
+            <h4 class="text-center"><img id="si_logo" src="images/si_logo.png" height="48" width="50">&copy;<strong>SOFTWARE INCUBATOR</strong></h4>
         </div>                  
     </div>
 

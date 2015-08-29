@@ -22,7 +22,8 @@
 			@if($branch=='0')
 			<?php $branch="All" ?>
 			@endif
-			<h2 class="cl-md-offset-1 tb">Records Report of Date {{ $date}} for {{$branch}} Branch
+            
+			<h2 class="cl-md-offset-1 tb">Records Report of Date {{ date("d-M-Y",strtotime($date)) }} for {{$branch}} Branch(es)
             <!-- Print Button -->    
                 <a href="download_daily" class="printBtn">
                 <span class=" printContainer fa fa-print"  align="right"></span></a> 

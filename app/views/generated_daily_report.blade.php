@@ -1,6 +1,6 @@
 <?php
 //Header Files for MS-Word
-$filename= $date;
+$filename= date("d-M-Y",strtotime($date));
 header("Content-type: application/vnd.ms-word");
 header("Content-Disposition: attachment;Filename=". $filename .".doc");
 ?>
@@ -13,7 +13,7 @@ header("Content-Disposition: attachment;Filename=". $filename .".doc");
         <div class="container-fluid">
             <div class="container block">
         <div class="row Heading">
-            <center><h2 class="cl-md-offset-1 tb">Records Report of Date {{ $date}} for {{$branch}} Branch :</h2></center>
+            <center><h2 class="cl-md-offset-1 tb">Records Report of Date {{ date("d-M-Y",strtotime($date)) }} for {{$branch}} Branch(es)</h2></center>
             @if( $entries )
             <div class="overflo">
                 <table class="table" style="width:100%">

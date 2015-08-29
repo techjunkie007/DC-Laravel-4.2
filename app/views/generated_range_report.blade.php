@@ -1,6 +1,6 @@
 <?php
 //Header Files for MS-Word
-$filename= $from_date. " to ". $to_date;
+$filename= date("d-M-Y",strtotime($from_date)). " to ". date("d-M-Y",strtotime($to_date));
 header("Content-type: application/vnd.ms-word");
 header("Content-Disposition: attachment;Filename=". $filename .".doc");
 ?>
@@ -13,7 +13,7 @@ header("Content-Disposition: attachment;Filename=". $filename .".doc");
         <div class="container-fluid">
             <div class="container block">
         <div class="row Heading">
-            <center><h2 class="cl-md-offset-1 tb">Late Comers from {{$from_date}} to {{$to_date}} of {{$branch}} Branch(es)</h2></center>
+            <center><h2 class="cl-md-offset-1 tb">Late Comers from {{date("d-M-Y",strtotime($from_date))}} to {{date("d-M-Y",strtotime($to_date))}} of {{$branch}} Branch(es)</h2></center>
             @if( $entries )
             <div class="overflo">
                 <table class="table" style="width:100%">
@@ -41,12 +41,12 @@ header("Content-Disposition: attachment;Filename=". $filename .".doc");
                         $passInfo['entry_time']= explode(" ", $passInfo['entry_time'])[0];
                         if($branch!="All" && $passInfo['branch']==$branch)
                         {   
-                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_time'] . "</td></tr>";
+                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . date("d-M-Y",strtotime($passInfo['entry_time'])) . "</td></tr>";
                             $serial++;
                         }
                         if($branch=="All")
                         {
-                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['entry_time'] . "</td></tr>";
+                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . date("d-M-Y",strtotime($passInfo['entry_time'])) . "</td></tr>";
                             $serial++;   
                         }
                     }

@@ -99,7 +99,7 @@
                     </li>
                 </ul>
                 <!-- Register Entry Form Open -->
-                {{ Form::open(['url' => 'register']) }}
+                {{ Form::open(['url' => 'register', 'method' => 'GET']) }}
                 <div class="row">
                     <!-- Submit Entry Button -->
                     {{ Form::submit('Register Late Entry', array('class' => 'btn-lg btn-warning register_button', 'id' => 'loginButton')  ) }}

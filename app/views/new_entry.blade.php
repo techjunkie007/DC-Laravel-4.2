@@ -113,7 +113,7 @@ function validateAddStudentForm()
                 <h3>Enter Particulars</h3>
             </div>
             <!-- Add New Student Form Open -->
-            {{ Form::open(['url' => 'new-student']) }}
+            {{ Form::open(['url' => 'new-student', 'method' => 'GET']) }}
             <!-- Modal Body -->
             <div class="modal-body">
                 <div class="input-group pd">
