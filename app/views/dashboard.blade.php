@@ -79,7 +79,7 @@ function validateReportDate()
 @section('mid_content')
 
     <!-- Search Student Form Open-->
-    {{ Form::open(['url' => 'student']) }}
+    {{ Form::open(['url' => 'student', 'method' => 'GET']) }}
     <div class="row">   
         <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 fhieght">
             <div class="input-group">
@@ -99,7 +99,7 @@ function validateReportDate()
     OR MAKE DATEWISE ENTRY
     </div>
     <!-- Datewise Entry Form Open -->
-    {{  Form::open(['url' => 'datewise-dashboard']) }}
+    {{  Form::open(['url' => 'datewise-dashboard', 'method' => 'GET']) }}
     <!-- Date Picker -->
     <div class="row fheight1">
         <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 bottom_pad" style="height:100px;">
@@ -129,7 +129,7 @@ function validateReportDate()
             </button>
         </a>
         <!-- Generate Report Form Open -->
-        {{  Form::open(['url' => 'report-panel']) }}
+        {{  Form::open(['url' => 'report-panel', 'method' => 'GET']) }}
         <div class="col-md-1 col-sm-1">
         </div>
         <!-- Generate Report Submit Button -->
@@ -151,7 +151,7 @@ function validateReportDate()
                      <center> <h3>Daily Records Panel</h3> </center>
                 </div>
                 <!-- Daily Report Form Open -->
-                {{  Form::open(['url' => 'daily-report']) }}
+                {{  Form::open(['url' => 'daily-report', 'method'=>'GET']) }}
                 <!-- Modal Body -->
                 <div class="modal-body">
                     <!-- Calendar -->

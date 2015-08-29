@@ -43,7 +43,7 @@ function validateReportDates()
 @section('mid_content')
     
     <!-- Three Entry Form Open -->
-    {{Form::open(['url' => 'three-entry-report']) }}
+    {{Form::open(['url' => 'three-entry-report', 'method'=>'GET']) }}
     <div class="wrapper row block">
         <div class="generate_buttons col-md-8 col-md-offset-2"> 
             <!-- Three Entry Report Button -->
@@ -74,7 +74,7 @@ function validateReportDates()
                     <center><h3>Range Report Panel</h3></center>
                 </div>
                 <!-- Generate Report Form Open -->
-                {{  Form::open(['url' => 'range-report']) }}
+                {{  Form::open(['url' => 'range-report', 'method'=>'GET']) }}
                 <!-- Modal Body -->
                 <div class="modal-body">
                     <h4 class="text-center hfour">Record From Date</h4>                         

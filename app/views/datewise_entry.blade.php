@@ -97,7 +97,7 @@
                     </li>
                 </ul>
                 <!-- Register Entry Form Open -->
-                {{ Form::open(['url' => 'datewise-register']) }}
+                {{ Form::open(['url' => 'datewise-register', 'method' => 'GET']) }}
                 <div class="row">
                     <!-- Submit Entry Button -->
                     {{ Form::submit('Register Late Entry', array('class' => 'btn-lg btn-warning register_button', 'id' => 'loginButton')  ) }}
