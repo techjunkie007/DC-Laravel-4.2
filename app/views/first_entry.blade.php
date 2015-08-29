@@ -12,8 +12,6 @@
     <span class="glyphicon glyphicon-off" aria-hidden="true">
     </span>
     <span> Logout</span>
-    <!-- Logout Form Close -->
-    {{ Form::close() }}
 
 @endsection
 
@@ -25,6 +23,7 @@
             <div class="col-md-3 col-sm-4 thumbnail">
             <!-- Thumbnail of Student -->
             <?php 
+            
             $image_path="images/".$info->student_id.".jpg";
             echo "<img src=".$image_path.">";
             ?>

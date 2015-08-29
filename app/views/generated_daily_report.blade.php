@@ -1,6 +1,6 @@
 <?php
 //Header Files for MS-Word
-$filename= "ThreeEntry";
+$filename= $date;
 header("Content-type: application/vnd.ms-word");
 header("Content-Disposition: attachment;Filename=". $filename .".doc");
 ?>
@@ -13,7 +13,7 @@ header("Content-Disposition: attachment;Filename=". $filename .".doc");
         <div class="container-fluid">
             <div class="container block">
         <div class="row Heading">
-            <center><h2 class="cl-md-offset-1 tb"> Students with 3 Late Entries </h2></center>
+            <center><h2 class="cl-md-offset-1 tb">Records Report of Date {{ $date}} for {{$branch}} Branch :</h2></center>
             @if( $entries )
             <div class="overflo">
                 <table class="table" style="width:100%">
@@ -25,20 +25,36 @@ header("Content-Disposition: attachment;Filename=". $filename .".doc");
                         <td><h4>Year</h4></td>
                     </thead>
                     <tbody>
-                        <?php
-                        $serial=1;
-                        foreach ($entries as $entry) 
-                        {
-                            $info = DB::table('Students_infos')->where('student_id', $entry->student_id)->first();
-                            $passInfo = array('student_id' =>$info->student_id ,
+
+                    <?php
+                    $serial=1;
+                    $emptyFlag= false;
+                    foreach ($entries as $entry) 
+                    {
+                        $info = DB::table('Students_infos')->where('student_id', $entry->student_id)->first();
+                        $passInfo = array('student_id' =>$info->student_id ,
                                             'student_name'=>$info->student_name,
                                             'branch'=>$info->branch,
                                             'year'=>$info->year);
-                            
+                        if($branch!="All" && $passInfo['branch']==$branch)
+                        {   
+                            $emptyFlag= true;
                             echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td></tr>";
                             $serial++;
-                        } 
-                        ?>
+                        }
+                        if($branch=="All")
+                        {
+                            $emptyFlag=true;
+                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td></tr>";
+                            $serial++;   
+                        }
+                    }
+                    if ($emptyFlag== false) 
+                    {
+                        echo "<div class=\"alert alert-danger\" role=\"alert\">No Entries Found in Database</div>";
+                    }
+                    ?>
+                    
                     </tbody>
                 </table>
             </div> 

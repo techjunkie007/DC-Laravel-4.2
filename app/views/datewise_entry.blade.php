@@ -12,8 +12,6 @@
     <span class="glyphicon glyphicon-off" aria-hidden="true">
     </span>
     <span> Logout</span>
-    <!-- Logout Form Close -->
-    {{ Form::close() }}
 
 @endsection
 

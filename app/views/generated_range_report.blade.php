@@ -1,33 +1,22 @@
-<!-- Extends Master -->
-@extends('master')
-
-<!-- Yield Page Header Title-->
-@section('title', 'Late Entry | Range Report')
-
-<!-- Yield Logout Button -->
-@section('logout_button')
-
-    <!-- Logout Button -->
-    <button class="btn btn-default col-md-1 col-sm-1 logout">
-    <span class="glyphicon glyphicon-off" aria-hidden="true">
-    </span>
-    <span> Logout</span>
-
-@endsection
-
-@section('mid_content')
-
-    <div class="container block">
+<?php
+//Header Files for MS-Word
+$filename= $from_date. " to ". $to_date;
+header("Content-type: application/vnd.ms-word");
+header("Content-Disposition: attachment;Filename=". $filename .".doc");
+?>
+<html>
+    <head>
+        <!-- Bootstrap CDN -->
+    {{ HTML::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css') }}
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="container block">
         <div class="row Heading">
-            <h2 class="cl-md-offset-1 tb">Late Comers from {{$from_date}} to {{$to_date}} of {{$branch}} Branch(es)
-                <!-- Print Button -->    
-                <a href="download_range" class="printBtn">
-                <span class=" printContainer fa fa-print"  align="right"></span></a> 
-            </h2>
-            @if ( $entries )
+            <center><h2 class="cl-md-offset-1 tb">Late Comers from {{$from_date}} to {{$to_date}} of {{$branch}} Branch(es)</h2></center>
+            @if( $entries )
             <div class="overflo">
-                <!-- Table for Records -->
-                <table class="table">
+                <table class="table" style="width:100%">
                     <!-- Table Head -->
                     <thead>
                         <!-- Table Headings -->
@@ -65,12 +54,14 @@
                     </tbody>
                 </table>
             </div> 
-            @else
+            @else 
             <div class="alert alert-danger" role="alert">
                 No Entries Found in Database
             </div>
-            @endif 
+            @endif
         </div>
     </div>
-
-@endsection
+        </div>  
+    </body>
+</html>
+       
