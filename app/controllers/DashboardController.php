@@ -127,7 +127,7 @@ class DashboardController extends BaseController
 				$this->save_in_db($student_no, $entry_date);
 
 				//Flash Message
-				$message= "Late Entry for Student Number ". $student_no. ", on Date ". date("d-M-Y",strtotime($entry_date))." successfully registered.";
+				$message= "Late Entry of Student Number ". $student_no. ", for date ". date("d F,Y",strtotime($entry_date))." successfully registered.";
 
 				//Redirect to Datewise Dashboard for more Datewise Entries
 				return Redirect::to('datewise_again')->with('message', $message);
