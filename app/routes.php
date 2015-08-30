@@ -64,6 +64,9 @@ Route::get('download_daily', array('uses'=>'ReportController@download_daily_repo
 //Download Report Route
 Route::get('download_range', array('uses'=>'ReportController@download_range_report'));
 
+//Download Report Route
+Route::get('download_distinct', array('uses'=>'ReportController@download_distinct_report'));
+
 //Logout Route
 Route::post('logout', array('as'=>'logout_submit', 'uses'=>'LoginController@logout'));
 
@@ -82,6 +85,9 @@ Route::get('get', function()
 {
     var_dump(Session::get('current_user'));
     var_dump(Session::get('entry_date'));
+    var_dump(Session::get('from_date'));
+    var_dump(Session::get('to_date'));
+
     var_dump(Session::get('student_no'));
     var_dump(Session::get('entry_flag'));
     var_dump(Session::get('daily_date'));

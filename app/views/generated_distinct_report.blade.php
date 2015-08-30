@@ -1,6 +1,6 @@
 <?php
 //Header Files for MS-Word
-$filename= "Datewise " . date("d-M-Y",strtotime($from_date)). " to ". date("d-M-Y",strtotime($to_date));
+$filename="Studentwise " date("d-M-Y",strtotime($from_date)). " to ". date("d-M-Y",strtotime($to_date));
 header("Content-type: application/vnd.ms-word");
 header("Content-Disposition: attachment;Filename=". $filename .".doc");
 ?>
@@ -25,7 +25,7 @@ header("Content-Disposition: attachment;Filename=". $filename .".doc");
                         <td><h4>Name</h4></td>
                         <td><h4>Branch</h4></td>
                         <td><h4>Year</h4></td>
-                        <td><h4>Entry Date</h4></td>
+                        <td><h4>No. of Entries</h4></td>
                     </thead>
                    <tbody>
                     <?php
@@ -37,16 +37,15 @@ header("Content-Disposition: attachment;Filename=". $filename .".doc");
                                             'student_name'=>$info->student_name,
                                             'branch'=>$info->branch,
                                             'year'=>$info->year,
-                                            'entry_time'=>$entry->entry_time);
-                        $passInfo['entry_time']= explode(" ", $passInfo['entry_time'])[0];
+                                            'count'=> $entry->count);
                         if($branch!="All" && $passInfo['branch']==$branch)
                         {   
-                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . date("d-M-Y",strtotime($passInfo['entry_time'])) . "</td></tr>";
+                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['count'] . "</td></tr>";
                             $serial++;
                         }
                         if($branch=="All")
                         {
-                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . date("d-M-Y",strtotime($passInfo['entry_time'])) . "</td></tr>";
+                            echo "<tr><td>" . $serial . "</td><td>" . $passInfo['student_id'] . "</td><td>" . $passInfo['student_name'] . "</td><td>" . $passInfo['branch'] . "</td><td>" . $passInfo['year'] . "</td><td>" . $passInfo['count'] . "</td></tr>";
                             $serial++;   
                         }
                     }
