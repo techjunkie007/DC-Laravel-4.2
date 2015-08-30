@@ -1,4 +1,4 @@
-<?php 
+		<?php 
 
 class ReportController extends BaseController {
 
@@ -151,9 +151,6 @@ class ReportController extends BaseController {
 			$from_date= Session::get('from_date');
 			$branch= Session::get('branch');
 
-			// Flush Session Entries
-			Session::forget(array('to_date', 'from_date', 'branch'));
-
 			//Retrieve Entries from Students
 			$entries= DB::table('Students')->select('student_id','entry_time')
 										->where('entry_time', '>=', $from_date)
@@ -170,6 +167,39 @@ class ReportController extends BaseController {
 			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
 		}
 	}
+
+	//Download the Word Document of Distinct Range Report
+	function download_distinct_report()
+	{
+		if(Auth::check())
+		{
+			$to_date= Session::get('to_date');
+			$from_date= Session::get('from_date');
+			$branch= Session::get('branch');
+
+			//Retrieve Entries from Students
+			$entries= DB::table('Students')->select('student_id')
+										->where('entry_time', '>=', $from_date)
+									   ->where('entry_time', '<=', $to_date)->distinct('student_id')->get();
+			foreach ($entries as $entry) 
+			{
+				$count_set= DB::table('Students')->select('student_id')->where('student_id', $entry->student_id)->count();
+				$entry->count = $count_set;
+			}
+
+			//Report Download View
+			return View::make('generated_distinct_report')->with('from_date', $from_date)
+															->with('to_date', $to_date)
+															->with('entries', $entries)
+															->with('branch', $branch);
+			
+		}
+		else
+		{
+			//Login Again with Message
+			return Redirect::to('login')->with('message','You are not Authenticated, Login Again');
+		}
+	}	
 
 	//Specifies Branch Name from Branch ID
 	function specify_branch($branch_id)
