@@ -23,7 +23,7 @@
 			<?php $branch="All" ?>
 			@endif
             
-			<h2 class="cl-md-offset-1 tb">Records Report of Date {{ date("d-M-Y",strtotime($date)) }} for {{$branch}} Branch(es)
+			<h2 class="cl-md-offset-1 tb">Report for <strong>{{ date("d F,Y",strtotime($date)) }}</strong> of {{$branch}} Branch(es)
             <!-- Print Button -->    
                 <a href="download_daily" class="printBtn">
                 <span class=" printContainer fa fa-print"  align="right"></span></a> 

@@ -19,7 +19,7 @@
 
     <div class="container block">
         <div class="row Heading">
-            <h2 class="cl-md-offset-1 tb">Late Comers from {{ date("d-M-Y",strtotime($from_date)) }} to {{ date("d-M-Y",strtotime($to_date)) }} of {{$branch}} Branch(es)
+            <h2 class="cl-md-offset-1 tb">Late comers from <strong>{{ date("d F,Y",strtotime($from_date)) }} to {{ date("d F,Y",strtotime($to_date)) }}</strong> for {{$branch}} Branch(es)
                 <!-- Print Button -->    
                 <a href="download_range" class="printBtn">
                 <span class=" printContainer fa fa-print"  align="right"></span></a>

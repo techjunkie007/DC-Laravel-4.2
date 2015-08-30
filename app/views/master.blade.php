@@ -17,6 +17,9 @@
 	{{ HTML::style('css/inside.css') }}
 	<!-- Clock1 CSS-->
 	{{ HTML::style('css/clock1.css') }}
+
+    {{HTML::style('css/datepicker.css')}}
+    {{HTML::style('css/datepicker3.css')}}
 	<!-- Register CSS -->
 	{{ HTML::style('css/register.css') }}
 	<!-- New Entry CSS -->
@@ -115,7 +118,7 @@
     </div>
 
     <!-- JavaScript for FlipClock-->
-
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
         var clock;
         $(document).ready(function() 
@@ -138,10 +141,15 @@
         //Date Time Picker
         $(function () 
         {
-        	$('#datetimepicker10').datetimepicker({
-            viewMode: 'years',
-            format: 'MM/YYYY'
-            });
+        	// $('#datetimepicker10').datetimepicker({
+         //    viewMode: 'years',
+         //    format: 'MM/YYYY'
+         //    });
+
+                $('.datepicker').datepicker({
+        format: 'mm/dd/yyyy',
+        startDate: '-3d'
+})
         }); 
     </script>         
 

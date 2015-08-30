@@ -145,7 +145,7 @@ class DashboardController extends BaseController
 				Session::forget('student_no');
 
 				//Flash Message
-				$message= "Today's Late Entry for Student Number ". $student_no. " successfully registered.";
+				$message= "Today's late entry for Student Number ". $student_no. " successfully registered.";
 
 				//Redirect to Dashboard for Today's Entry
 				return Redirect::to('dashboard')->with('message', $message);

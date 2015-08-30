@@ -161,6 +161,7 @@ function validateReportDate()
                     <h4 class="text-center hfour">Record of Date</h4>                         
                     <div>
                         <div class="form-group">
+                            
                             <div class='input-group date' id='datetimepicker9'>
                             <!-- Date Input -->
                             {{ Form::input('date', 'reportDate', date('Y-m-d'), ['id'=>'reportDate' ,'class' => 'form-control']) }}
