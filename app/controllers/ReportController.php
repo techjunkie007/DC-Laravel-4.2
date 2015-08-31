@@ -183,7 +183,10 @@ class ReportController extends BaseController {
 									   ->where('entry_time', '<=', $to_date)->distinct('student_id')->get();
 			foreach ($entries as $entry) 
 			{
-				$count_set= DB::table('Students')->select('student_id')->where('student_id', $entry->student_id)->count();
+				$count_set= DB::table('Students')->select('student_id')
+									  			->where('student_id', $entry->student_id)
+									  			->where('entry_time', '>=', $from_date)
+									  			->where('entry_time', '<=', $to_date)->count();
 				$entry->count = $count_set;
 			}
 
