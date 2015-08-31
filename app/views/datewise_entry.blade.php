@@ -93,7 +93,7 @@
                     <li class="row Text">
                         <!-- Number of Entries Message -->
 
-                        {{$info->student_name." has ".$counter." Late Entries till now."}} 
+                        {{ucwords(strtolower($info->student_name))." has <strong>".$counter."</strong> late entries till now."}} 
                     </li>
                 </ul>
                 <!-- Register Entry Form Open -->

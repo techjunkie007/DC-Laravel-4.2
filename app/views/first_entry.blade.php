@@ -94,7 +94,7 @@
                     <li class="row Text">
                         <!-- Number of Entries Message -->
                         <?php 
-                        echo "This is ".$info->student_name."'s First Late Entry."; 
+                        echo "This is ".ucwords(strtolower($info->student_name))."'s <strong>first</strong> late entry."; 
                         ?> 
                     </li>
                 </ul>

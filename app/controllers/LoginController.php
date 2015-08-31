@@ -24,7 +24,7 @@ class LoginController extends BaseController {
 		else
 		{	
 			//Not Authenticated
-			return Redirect::to('login')->with('message','Invalid Credentials, Login Again');
+			return Redirect::to('login')->with('message','Invalid Credentials, Please login again');
 		}
 	}
 
@@ -36,7 +36,7 @@ class LoginController extends BaseController {
 	 	//Auth Logout
 	 	Auth::logout();
 	 	//Redirect to
-	 	return Redirect::to('login')->with('message', 'You Logged Out. Log In Again');
+	 	return Redirect::to('login')->with('message', 'You have successfully logged out');
 	}
 
 }

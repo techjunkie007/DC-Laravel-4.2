@@ -127,7 +127,7 @@ class DashboardController extends BaseController
 				$this->save_in_db($student_no, $entry_date);
 
 				//Flash Message
-				$message= "Late Entry for Student Number ". $student_no. ", on Date ". date("d-M-Y",strtotime($entry_date))." successfully registered.";
+				$message= "Late entry of Student Number ". $student_no. ", for Date ". date("d-M-Y",strtotime($entry_date))." successfully registered.";
 
 				//Redirect to Datewise Dashboard for more Datewise Entries
 				return Redirect::to('datewise_again')->with('message', $message);
@@ -145,7 +145,7 @@ class DashboardController extends BaseController
 				Session::forget('student_no');
 
 				//Flash Message
-				$message= "Today's Late Entry for Student Number ". $student_no. " successfully registered.";
+				$message= "Today's late entry of Student Number ". $student_no. " successfully registered.";
 
 				//Redirect to Dashboard for Today's Entry
 				return Redirect::to('dashboard')->with('message', $message);
