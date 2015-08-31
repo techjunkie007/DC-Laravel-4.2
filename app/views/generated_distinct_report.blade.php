@@ -1,6 +1,6 @@
 <?php
 //Header Files for MS-Word
-$filename="Studentwise " date("d-M-Y",strtotime($from_date)). " to ". date("d-M-Y",strtotime($to_date));
+$filename="Studentwise ". date("d-M-Y",strtotime($from_date)). " to ". date("d-M-Y",strtotime($to_date));
 header("Content-type: application/vnd.ms-word");
 header("Content-Disposition: attachment;Filename=". $filename .".doc");
 ?>
